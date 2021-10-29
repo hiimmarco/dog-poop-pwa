@@ -34,3 +34,10 @@ yarn-error.log*
 .vercel
 
 .eslintcache
+
+# PWA
+
+.sw.js
+.sw.js.map
+.workbox-1ffba242.js
+.workbox-1ffba242.js.map
