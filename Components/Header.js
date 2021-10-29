@@ -6,7 +6,7 @@ export default function Header() {
     <div>
       <Link href="/">
         <a>
-          <Image src="hello" alt="This is the dog poop logo" />
+          <Image src="/favicon.png" alt="This is the poop logo" layout="fill" />
         </a>
       </Link>
     </div>
