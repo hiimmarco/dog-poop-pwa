@@ -6,7 +6,7 @@ export default function Bottomnav() {
       <nav className="fixed bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
         <ul className="flex flex-row justify-evenly text-xs">
           <Link href="/">
-            <a className="w-full block py-3 px-3 text-center border-r-2">
+            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400">
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/">
-            <a className="w-full block py-3 px-3 text-center border-r-2">
+            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400">
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +38,7 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/">
-            <a className="w-full block py-3 px-3 text-center">
+            <a className="w-full block py-3 px-3 text-center text-gray-400">
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,9 +58,8 @@ export default function Bottomnav() {
           <Link href="/">
             <a className="w-full block py-3 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
               <svg
-                className="w-6 h-6 mb-1 mx-auto"
+                className="w-7 h-7 mx-auto text-white place-content-center"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -72,7 +71,6 @@ export default function Bottomnav() {
                   d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              <li>Add</li>
             </a>
           </Link>
         </ul>
