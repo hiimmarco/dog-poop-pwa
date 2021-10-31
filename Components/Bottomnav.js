@@ -3,12 +3,12 @@ import Link from 'next/link';
 export default function Bottomnav() {
   return (
     <div>
-      <nav className="fixed bottom-0 inset-x-0 bg-white">
-        <ul className="flex flex-row justify-evenly text-sm">
+      <nav className="fixed bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
+        <ul className="flex flex-row justify-evenly text-xs">
           <Link href="/">
-            <a className="w-full block py-5 px-3 text-center">
+            <a className="w-full block py-3 px-3 text-center border-r-2">
               <svg
-                className="w-6 h-6 mb-2 mx-auto"
+                className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
                 viewBox="0 0 20 20"
@@ -20,9 +20,9 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/">
-            <a className="w-full block py-5 px-3 text-center">
+            <a className="w-full block py-3 px-3 text-center border-r-2">
               <svg
-                className="w-6 h-6 mb-2 mx-auto"
+                className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-5 w-5"
                 viewBox="0 0 20 20"
@@ -38,11 +38,11 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/">
-            <a className="w-full block py-5 px-3 text-center">
+            <a className="w-full block py-3 px-3 text-center">
               <svg
-                className="w-6 h-6 mb-2 mx-auto"
+                className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
+                class="h-3 w-3"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -56,9 +56,9 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/">
-            <a className="w-full block py-5 px-3 text-center bg-red-600">
+            <a className="w-full block py-3 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
               <svg
-                className="w-6 h-6 mb-2 mx-auto"
+                className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
                 fill="none"
