@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import Header from '../Components/Header';
 
-export default function Signup() {
+export default function Signin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -20,7 +20,7 @@ export default function Signup() {
       <main>
         <div className="flex flex-col h-screen">
           <div className="mt-24 pl-4 pr-4">
-            <p className="mb-8 text-3xl font-medium">Sign up</p>
+            <p className="mb-8 text-3xl font-medium">Sign in</p>
 
             <label
               className="block text-base font-semibold mb-4"
@@ -46,7 +46,7 @@ export default function Signup() {
             </label>
 
             <button className="mb-8 text-2xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
-              Sign up
+              Sign in
             </button>
           </div>
         </div>
