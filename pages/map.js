@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
-import Layout from '../Components/Layout';
 
 export default function Map() {
   return (
@@ -13,7 +11,7 @@ export default function Map() {
           alt="Map"
           width="375"
           height="537"
-          className="pt-20"
+          className=""
         />
       </main>
       <Bottomnav />

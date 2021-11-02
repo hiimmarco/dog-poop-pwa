@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <div className="fixed top-0 inset-x-0 bg-white h-16 flex flex-row items-center place-content-center filter drop-shadow-md">
+    <div className="sticky top-0 inset-x-0 bg-white h-16 flex flex-row items-center place-content-center filter drop-shadow-md">
       <div>
         <Link href="/">
           <a>

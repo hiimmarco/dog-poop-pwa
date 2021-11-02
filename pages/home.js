@@ -1,7 +1,12 @@
+import Layout from '../Components/Layout';
+
 export default function Start() {
   return (
     <div>
-      <p>Hello Start.</p>
+      <Layout />
+      <p>
+        helloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloohelloo
+      </p>
     </div>
   );
 }
