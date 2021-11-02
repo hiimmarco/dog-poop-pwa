@@ -19,7 +19,7 @@ export default function Signup() {
       <Header />
       <main>
         <div className="flex flex-col h-screen">
-          <div className="mt-24 pl-4 pr-4">
+          <div className="mt-8 pl-4 pr-4">
             <p className="mb-8 text-3xl font-medium">Sign up</p>
 
             <label

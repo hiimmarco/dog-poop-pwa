@@ -5,7 +5,7 @@ export default function Bottomnav() {
     <div>
       <nav className="fixed bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
         <ul className="flex flex-row justify-evenly text-xs">
-          <Link href="/">
+          <Link href="/home">
             <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400">
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
