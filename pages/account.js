@@ -9,10 +9,11 @@ export default function Account() {
         <div className="mt-8 pl-4 pr-4">
           <p className="mb-8 text-2xl font-medium">Account</p>
 
-          <p className="mb-8 text-2xl font-medium">
-            Username: <span>Max Moser</span>
+          <p className="mb-2 text-base">
+            Username: <span className="font-semibold">Max Moser</span>
           </p>
-          <p className="mb-8 text-2xl font-medium">My added poop:</p>
+          <p className="font-semibold text-pink-700 underline mb-8">Log out</p>
+          <p className="mb-8 text-xl font-medium">My added poop:</p>
           <Poopcard />
           <Poopcard />
           <Poopcard />

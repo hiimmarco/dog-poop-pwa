@@ -55,7 +55,7 @@ export default function Bottomnav() {
               <li>Account</li>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/addpoop">
             <a className="w-full block py-3 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
               <svg
                 className="w-7 h-7 mx-auto text-white place-content-center"
