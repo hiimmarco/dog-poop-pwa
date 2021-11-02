@@ -19,8 +19,8 @@ export default function Bottomnav() {
               <li>Home</li>
             </a>
           </Link>
-          <Link href="/">
-            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400">
+          <Link href="/map">
+            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400 ">
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"

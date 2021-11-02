@@ -6,10 +6,14 @@ export default function Home() {
     <div>
       <Layout />
       <main>
-        <div classname="flex flex-col">
-          <button className="pt-14">Sign in</button>
-          <p>or</p>
-          <p>Sign up</p>
+        <div className="flex h-screen">
+          <div className="m-auto text-center">
+            <button className="mb-8 text-2xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
+              Sign up
+            </button>
+            <p className="mb-8 text-2xl font-medium">or</p>
+            <p className="text-2xl font-bold text-pink-500">Sign in</p>
+          </div>
         </div>
       </main>
     </div>
