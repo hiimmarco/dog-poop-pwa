@@ -9,6 +9,9 @@ export default function Start() {
         <div className="mt-8 pl-4 pr-4">
           <p className="mb-8 text-3xl font-medium">Recently added</p>
           <Poopcard />
+          <Poopcard />
+          <Poopcard />
+          <Poopcard />
         </div>
       </div>
     </div>
