@@ -1,10 +1,11 @@
 import Head from 'next/head';
+import Header from '../Components/Header';
 import Layout from '../Components/Layout';
 
 export default function Home() {
   return (
     <div>
-      <Layout />
+      <Header />
       <main>
         <div className="flex h-screen">
           <div className="m-auto text-center">
