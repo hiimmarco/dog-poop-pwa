@@ -20,7 +20,7 @@ export default function Signup() {
       <main>
         <div className="flex flex-col h-screen">
           <div className="mt-8 pl-4 pr-4">
-            <p className="mb-8 text-3xl font-medium">Sign up</p>
+            <p className="mb-8 text-2xl font-medium">Sign up</p>
 
             <label
               className="block text-base font-semibold mb-4"
@@ -45,7 +45,7 @@ export default function Signup() {
               />
             </label>
 
-            <button className="mb-8 text-2xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
+            <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
               Sign up
             </button>
           </div>
