@@ -1,27 +1,36 @@
-const poops = [
+export const poops = [
   {
     id: 1,
-    title: 'Dog Poop at Schwedenplatz',
+    title: 'Poop at Schwedenplatz',
     author: 'Max',
     img: 'url',
-    date: 234,
-    location: 'coordinates',
+    date: '23.12.2014',
+    location: {
+      latitude: '',
+      longitude: '',
+    },
   },
   {
     id: 2,
     title: 'Bad one on mahü',
     author: 'Marian',
     img: 'url',
-    date: 234,
-    location: 'coordinates',
+    date: '25.53.3968',
+    location: {
+      latitude: '',
+      longitude: '',
+    },
   },
   {
     id: 3,
     title: 'Why in front of my car',
     author: 'Robert',
     img: 'url',
-    date: 234,
-    location: 'coordinates',
+    date: '12.12.1212',
+    location: {
+      latitude: '',
+      longitude: '',
+    },
   },
   {
     id: 4,
@@ -29,6 +38,9 @@ const poops = [
     author: 'Manfred',
     img: 'url',
     date: 234,
-    location: 'coordinates',
+    location: {
+      latitude: '',
+      longitude: '',
+    },
   },
 ];
