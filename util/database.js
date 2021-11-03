@@ -1,3 +1,4 @@
+import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
 
@@ -6,6 +7,15 @@ dotenvSafe.config();
 
 // Connect to postgres
 const sql = postgres();
+
+export async function getPoops() {
+  const poops = await sql`
+  SELECT * FROM poops;
+  `;
+  return poops.map((poop) => {
+    return camelcaseKeys(poop);
+  });
+}
 
 export const poops = [
   {
