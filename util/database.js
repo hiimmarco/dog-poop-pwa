@@ -1,6 +1,6 @@
 export const poops = [
   {
-    id: 1,
+    id: '1',
     title: 'Poop at Schwedenplatz',
     author: 'Max',
     img: 'url',
@@ -11,7 +11,7 @@ export const poops = [
     },
   },
   {
-    id: 2,
+    id: '2',
     title: 'Bad one on mahü',
     author: 'Marian',
     img: 'url',
@@ -22,7 +22,7 @@ export const poops = [
     },
   },
   {
-    id: 3,
+    id: '3',
     title: 'Why in front of my car',
     author: 'Robert',
     img: 'url',
@@ -33,7 +33,7 @@ export const poops = [
     },
   },
   {
-    id: 4,
+    id: '4',
     title: 'Seems to be a big dog',
     author: 'Manfred',
     img: 'url',
