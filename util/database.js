@@ -1,3 +1,12 @@
+import dotenvSafe from 'dotenv-safe';
+import postgres from 'postgres';
+
+// Read in the .env environment variables in the file to connect to postgres
+dotenvSafe.config();
+
+// Connect to postgres
+const sql = postgres();
+
 export const poops = [
   {
     id: '1',
@@ -6,8 +15,8 @@ export const poops = [
     img: 'url',
     date: '23.12.2014',
     location: {
-      latitude: '',
-      longitude: '',
+      lat: '',
+      lon: '',
     },
   },
   {
@@ -17,8 +26,8 @@ export const poops = [
     img: 'url',
     date: '25.53.3968',
     location: {
-      latitude: '',
-      longitude: '',
+      lat: '',
+      lon: '',
     },
   },
   {
@@ -28,8 +37,8 @@ export const poops = [
     img: 'url',
     date: '12.12.1212',
     location: {
-      latitude: '',
-      longitude: '',
+      lat: '',
+      lon: '',
     },
   },
   {
@@ -39,8 +48,8 @@ export const poops = [
     img: 'url',
     date: 234,
     location: {
-      latitude: '',
-      longitude: '',
+      lat: '',
+      lon: '',
     },
   },
 ];
