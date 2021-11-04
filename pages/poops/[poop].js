@@ -5,26 +5,26 @@ export default function Poopdetail(props) {
   return (
     <div>
       <Header />
-      <h1>{props.singlePoop.title}</h1>
-      <p>{props.singlePoop.date}</p>
-      <p>{props.singlePoop.author}</p>
+      <h1>{props.poop.title}</h1>
+      <p>{props.poop.date}</p>
+      <p>{props.poop.author}</p>
       <p>Back to home</p>
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
-  const { poops } = await import('../../util/database');
+  const { getPoop } = await import('../../util/database');
 
-  const idFromUrl = context.query.poop;
+  const poop = await getPoop(context.query.poop);
 
-  const singlePoop = poops.find((poop) => {
+  /*   const poop = poops.find((poop) => {
     return idFromUrl === poop.id;
-  });
+  }); */
 
   return {
     props: {
-      singlePoop,
+      poop,
     },
   };
 }

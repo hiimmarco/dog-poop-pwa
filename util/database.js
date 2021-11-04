@@ -17,6 +17,18 @@ export async function getPoops() {
   });
 }
 
+export async function getPoop(id) {
+  const poops = await sql`
+  SELECT
+    *
+  FROM
+    poops
+  WHERE
+    id = ${id}
+  `;
+  return camelcaseKeys(poops[0]);
+}
+
 export const poops = [
   {
     id: '1',
