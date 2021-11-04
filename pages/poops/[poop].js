@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Header from '../../Components/Header';
+import { getPoop } from '../../util/database';
 
 export default function Poopdetail(props) {
   return (
