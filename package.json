@@ -10,6 +10,7 @@
     "migrate": "dotenv ley"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.5.0",
     "autoprefixer": "^10.4.0",
     "camelcase-keys": "^7.0.1",
     "dotenv-cli": "^4.1.0",
