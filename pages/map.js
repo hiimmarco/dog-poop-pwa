@@ -26,7 +26,7 @@ const options = {
 export default function Maptest() {
   // Load Google Maps Scripts
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
     libraries,
   });
 
