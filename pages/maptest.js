@@ -6,7 +6,6 @@ import {
 } from '@react-google-maps/api';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
-import mapstyles from '../public/mapstyles.js';
 
 const libraries = ['places'];
 
@@ -20,28 +19,22 @@ const center = {
   lng: 16.40865,
 };
 
-const options = {
-  styles: mapstyles,
-  disableDefaultUI: true,
-};
-
 export default function Maptest() {
   // Load Google Maps Scripts
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
+    googleMapsApiKey: process.env.local.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
   if (loadError) return 'Error loading map';
-  if (!isLoaded) return 'Error';
+  if (!isLoaded) return 'Loading maps';
   return (
     <div>
       <Header />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={16}
+        zoom={8}
         center={center}
-        options={options}
       />
       <Bottomnav />
     </div>

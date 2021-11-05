@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout from '../../Components/Layout';
 
 export default function Poopdetail(props) {
@@ -20,9 +21,13 @@ export default function Poopdetail(props) {
           <p className="text-base mb-6">
             A really bad one. I almost stumbled into it.
           </p>
-          <p className="font-semibold text-pink-700 underline mb-8">
-            Back to home
-          </p>
+          <Link href="/home">
+            <a>
+              <p className="font-semibold text-pink-700 underline mb-8">
+                Back to home
+              </p>
+            </a>
+          </Link>
         </div>
       </div>
     </div>
