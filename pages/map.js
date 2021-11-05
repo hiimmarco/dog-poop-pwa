@@ -6,7 +6,6 @@ import {
 } from '@react-google-maps/api';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
-import mapstyles from '../public/mapstyles.js';
 
 const libraries = ['places'];
 
@@ -21,20 +20,17 @@ const center = {
 };
 
 const options = {
-  styles: mapstyles,
   disableDefaultUI: true,
 };
 
 export default function Maptest() {
   // Load Google Maps Scripts
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
-  if (loadError) return 'Error loading map';
-  if (!isLoaded) return 'Error';
-  return (
+  return isLoaded ? (
     <div>
       <Header />
       <GoogleMap
@@ -43,6 +39,12 @@ export default function Maptest() {
         center={center}
         options={options}
       />
+      <Bottomnav />
+    </div>
+  ) : (
+    <div>
+      <Header />
+      <h2 className="text-3xl text-center mt-8">Loading</h2>
       <Bottomnav />
     </div>
   );
