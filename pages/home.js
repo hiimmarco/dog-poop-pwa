@@ -16,6 +16,7 @@ export default function Start(props) {
                     title={poop.title}
                     author={poop.author}
                     date={poop.date}
+                    link={poop.id}
                   />
                 </div>
               );
@@ -27,12 +28,24 @@ export default function Start(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
   const { poops } = await import('../util/database');
 
   return {
     props: {
       poops: poops,
+    },
+  };
+} */
+
+export async function getServerSideProps(context) {
+  const { getPoops } = await import('../util/database');
+
+  const poops = await getPoops();
+
+  return {
+    props: {
+      poops,
     },
   };
 }

@@ -10,7 +10,6 @@ export default function Bottomnav() {
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -24,14 +23,13 @@ export default function Bottomnav() {
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
               <li>Map</li>
@@ -42,32 +40,31 @@ export default function Bottomnav() {
               <svg
                 className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-3 w-3"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 />
               </svg>
               <li>Account</li>
             </a>
           </Link>
           <Link href="/addpoop">
-            <a className="w-full block py-3 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
+            <a className="w-full block  pt-2.5 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
               <svg
-                className="w-7 h-7 mx-auto text-white place-content-center"
+                className="w-12 h-12 mx-auto text-white place-content-center"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
