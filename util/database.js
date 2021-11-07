@@ -29,11 +29,11 @@ export async function getPoop(id) {
   return camelcaseKeys(poops[0]);
 }
 
-export const poops = [
+/* export const poops = [
   {
     id: '1',
     title: 'Poop at Schwedenplatz',
-    author: 'Max',
+    author: 'Ida Schmidl',
     img: 'url',
     date: '23.12.2014',
     location: {
@@ -74,4 +74,4 @@ export const poops = [
       lon: '',
     },
   },
-];
+]; */
