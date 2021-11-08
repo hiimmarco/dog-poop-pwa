@@ -1,6 +1,19 @@
+import '@reach/combobox/styles.css';
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxOptionText,
+  ComboboxPopover,
+} from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Head from 'next/head';
 import { useState } from 'react';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from 'use-places-autocomplete';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
 
