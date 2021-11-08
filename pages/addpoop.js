@@ -71,7 +71,9 @@ export default function Addpoop() {
               <input
                 className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={title}
-                onChange={setTitle}
+                onChange={(event) => {
+                  setTitle(event.currentTarget.value);
+                }}
               />
             </label>
 
@@ -83,8 +85,7 @@ export default function Addpoop() {
               }}
             >
               <ComboboxInput
-                aria-labelledby="demo"
-                className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={value}
                 onChange={(e) => {
                   setValue(e.target.value);
@@ -92,7 +93,7 @@ export default function Addpoop() {
                 // placeholder="Enter address"
               />
               <ComboboxPopover>
-                <ComboboxList aria-labelledby="demo">
+                <ComboboxList>
                   <ComboboxOption value="Apple" />
                   <ComboboxOption value="Banana" />
                   <ComboboxOption value="Orange" />
