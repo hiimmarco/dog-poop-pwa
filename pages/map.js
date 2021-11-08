@@ -4,6 +4,7 @@ import {
   Marker,
   useLoadScript,
 } from '@react-google-maps/api';
+import { useCallback, useRef, useState } from 'react';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
 
@@ -30,7 +31,12 @@ export default function Maptest(props) {
     googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
     libraries,
   });
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
   return isLoaded ? (
     <div>
       <Header />
@@ -39,6 +45,7 @@ export default function Maptest(props) {
         zoom={10}
         center={center}
         options={options}
+        onLoad={onMapLoad}
       >
         {props.poops.map((poop) => (
           <Marker
@@ -53,8 +60,27 @@ export default function Maptest(props) {
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
             }}
+            onClick={() => {
+              setSelectedMarker(poop);
+            }}
           />
         ))}
+        {selectedMarker ? (
+          <InfoWindow
+            position={{
+              lat: Number(selectedMarker.latitude),
+              lng: Number(selectedMarker.longitude),
+            }}
+            onCloseClick={() => {
+              setSelectedMarker(null);
+            }}
+          >
+            <div>
+              <h2>{selectedMarker.title}</h2>
+              <p>{selectedMarker.author}</p>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
       <Bottomnav />
     </div>
