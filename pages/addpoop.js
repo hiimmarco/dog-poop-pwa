@@ -31,26 +31,30 @@ const center = {
 
 const options = {
   disableDefaultUI: true,
-  zoomControl: true,
+  // zoomControl: true,
 };
 
 export default function Addpoop() {
   const [title, setTitle] = useState('');
-  const [address, setAddress] = useState('');
+
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      location: { lat: () => 48.208647306552386, lng: () => 16.37347071007108 },
+      radius: 40 * 1000,
+    },
+  });
 
   // Load Google Maps Scripts
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
     libraries,
   });
-
-  function newTitle() {
-    return 'Hello';
-  }
-
-  function newAddress() {
-    return 'Hello';
-  }
 
   return isLoaded ? (
     <div>
@@ -65,22 +69,38 @@ export default function Addpoop() {
             >
               Title:
               <input
-                className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={title}
-                onChange={newTitle}
+                onChange={setTitle}
               />
             </label>
-            <label
-              className="block text-base font-semibold mb-4"
-              for="username"
+
+            <p className="font-semibold">Address:</p>
+
+            <Combobox
+              onSelect={(address) => {
+                console.log(address);
+              }}
             >
-              Address:
-              <input
+              <ComboboxInput
+                aria-labelledby="demo"
                 className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={address}
-                onChange={newAddress}
+                value={value}
+                onChange={(e) => {
+                  setValue(e.target.value);
+                }}
+                // placeholder="Enter address"
               />
-            </label>
+              <ComboboxPopover>
+                <ComboboxList aria-labelledby="demo">
+                  <ComboboxOption value="Apple" />
+                  <ComboboxOption value="Banana" />
+                  <ComboboxOption value="Orange" />
+                  <ComboboxOption value="Pineapple" />
+                  <ComboboxOption value="Kiwi" />
+                </ComboboxList>
+              </ComboboxPopover>
+            </Combobox>
 
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
@@ -88,7 +108,6 @@ export default function Addpoop() {
               center={center}
               options={options}
             />
-
             <button className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28">
               Add poop
             </button>
