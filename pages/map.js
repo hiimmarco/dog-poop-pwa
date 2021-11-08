@@ -55,8 +55,8 @@ export default function Maptest(props) {
               lng: Number(poop.longitude),
             }}
             icon={{
-              url: '/favicon.png',
-              scaledSize: new window.google.maps.Size(32, 32),
+              url: '/mappoop.png',
+              scaledSize: new window.google.maps.Size(32, 27),
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
             }}
