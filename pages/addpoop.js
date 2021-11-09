@@ -94,11 +94,10 @@ export default function Addpoop() {
               />
               <ComboboxPopover>
                 <ComboboxList>
-                  <ComboboxOption value="Apple" />
-                  <ComboboxOption value="Banana" />
-                  <ComboboxOption value="Orange" />
-                  <ComboboxOption value="Pineapple" />
-                  <ComboboxOption value="Kiwi" />
+                  {status === 'OK' &&
+                    data.map(({ id, description }) => (
+                      <ComboboxOption key={id} value={description} />
+                    ))}
                 </ComboboxList>
               </ComboboxPopover>
             </Combobox>
