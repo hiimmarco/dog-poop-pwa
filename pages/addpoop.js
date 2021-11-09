@@ -69,7 +69,13 @@ export default function Addpoop() {
     mapRef.current.setZoom(14);
   }, []);
 
-  return isLoaded ? (
+  return !isLoaded ? (
+    <div>
+      <Header />
+      <h2 className="text-3xl text-center mt-8">Loading</h2>
+      <Bottomnav />
+    </div>
+  ) : (
     <div>
       <Header />
       <main>
@@ -133,12 +139,6 @@ export default function Addpoop() {
           </div>
         </div>
       </main>
-    </div>
-  ) : (
-    <div>
-      <Header />
-      <h2 className="text-3xl text-center mt-8">Loading</h2>
-      <Bottomnav />
     </div>
   );
 }
