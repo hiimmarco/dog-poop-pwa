@@ -9,15 +9,13 @@ import {
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete';
 import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
-
-const libraries = ['places'];
 
 const mapContainerStyle = {
   width: '100%',
@@ -34,9 +32,18 @@ const options = {
   // zoomControl: true,
 };
 
+const libraries = ['places'];
+
 export default function Addpoop() {
   const [title, setTitle] = useState('');
 
+  // Load Google Maps Scripts
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
+    libraries,
+  });
+
+  // Load google places autocomplete
   const {
     ready,
     value,
@@ -50,11 +57,17 @@ export default function Addpoop() {
     },
   });
 
-  // Load Google Maps Scripts
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
-    libraries,
-  });
+  // Create refs to use on map
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  // Create function to pan map to selected location
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
 
   return isLoaded ? (
     <div>
@@ -63,10 +76,7 @@ export default function Addpoop() {
         <div className="flex flex-col h-screen">
           <div className="mt-8 pl-4 pr-4">
             <p className="mb-8 text-2xl font-medium">Add poop</p>
-            <label
-              className="block text-base font-semibold mb-2"
-              for="username"
-            >
+            <label className="block text-base font-semibold mb-2">
               Title:
               <input
                 className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,12 +86,20 @@ export default function Addpoop() {
                 }}
               />
             </label>
-
             <p className="font-semibold">Address:</p>
 
             <Combobox
-              onSelect={(address) => {
-                console.log(address);
+              onSelect={async (address) => {
+                setValue(address, false);
+                clearSuggestions();
+                try {
+                  const results = await getGeocode({ address });
+                  const { lat, lng } = await getLatLng(results[0]);
+                  console.log(lat, lng);
+                  // panTo(lat, lng);
+                } catch (error) {
+                  console.log('Error');
+                }
               }}
             >
               <ComboboxInput
@@ -107,6 +125,7 @@ export default function Addpoop() {
               zoom={10}
               center={center}
               options={options}
+              onLoad={onMapLoad}
             />
             <button className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28">
               Add poop
