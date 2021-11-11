@@ -32,7 +32,7 @@ const options = {
   // zoomControl: true,
 };
 
-const libraries = ['places'];
+// const libraries = ['places'];
 
 export default function Addpoop() {
   const [title, setTitle] = useState('');
@@ -40,7 +40,7 @@ export default function Addpoop() {
   // Load Google Maps Scripts
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
-    libraries,
+    // libraries,
   });
 
   // Load google places autocomplete
@@ -102,7 +102,7 @@ export default function Addpoop() {
                   const results = await getGeocode({ address });
                   const { lat, lng } = await getLatLng(results[0]);
                   console.log(lat, lng);
-                  // panTo(lat, lng);
+                  panTo(lat, lng);
                 } catch (error) {
                   console.log('Error');
                 }
@@ -119,8 +119,8 @@ export default function Addpoop() {
               <ComboboxPopover>
                 <ComboboxList>
                   {status === 'OK' &&
-                    data.map(({ id, description }) => (
-                      <ComboboxOption key={id} value={description} />
+                    data.map(({ place_id, description }) => (
+                      <ComboboxOption key={place_id} value={description} />
                     ))}
                 </ComboboxList>
               </ComboboxPopover>
