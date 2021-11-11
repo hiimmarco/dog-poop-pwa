@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="This is a dog poop reporter for vienna."
         />
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk&libraries=places" />
+
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="viewport"
