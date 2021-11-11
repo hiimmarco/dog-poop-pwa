@@ -14,7 +14,6 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete';
-import Bottomnav from '../Components/Bottomnav';
 import Header from '../Components/Header';
 
 const mapContainerStyle = {
@@ -60,6 +59,15 @@ export default function Addpoop() {
     },
   });
 
+  const onMapClick = useCallback((event) => {
+    setMarkers({
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    });
+    setLatitude(event.latLng.lat());
+    setLongitude(event.latLng.lng());
+  }, []);
+
   // Create refs to use on map
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -67,10 +75,10 @@ export default function Addpoop() {
   }, []);
 
   // Create function to pan map to selected location
-  const panTo = useCallback(({ lat, lng }) => {
+  /*   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
-  }, []);
+  }, []); */
 
   if (!isLoaded) return 'Loading';
   if (loadError) return 'Load error';
@@ -132,17 +140,18 @@ export default function Addpoop() {
               zoom={10}
               center={center}
               options={options}
-              onClick={(event) => {
-                setMarkers({
-                  lat: event.latLng.lat(),
-                  lng: event.latLng.lng(),
-                });
-                setLatitude(event.latLng.lat());
-                setLongitude(event.latLng.lng());
-              }}
+              onClick={onMapClick}
               onLoad={onMapLoad}
             >
-              <Marker position={{ lat: markers.lat, lng: markers.lng }} />
+              <Marker
+                position={{ lat: Number(latitude), lng: Number(longitude) }}
+                icon={{
+                  url: '/mappoop.png',
+                  scaledSize: new window.google.maps.Size(32, 27),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                }}
+              />
             </GoogleMap>
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
