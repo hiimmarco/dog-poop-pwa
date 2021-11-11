@@ -25,7 +25,42 @@ const options = {
   zoomControl: true,
 };
 
+function Locate({ panTo, setLatitude, setLongitude }) {
+  return (
+    <button
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+          },
+          () => null,
+        );
+      }}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-12 w-12 mb-8"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </button>
+  );
+}
+
 export default function Maptest(props) {
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   // Load Google Maps Scripts
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
@@ -33,13 +68,25 @@ export default function Maptest(props) {
   });
   const [selectedMarker, setSelectedMarker] = useState(null);
 
+  // Create refs to use on map
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+  // Create function to pan map to selected location
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(18);
+  }, []);
   return isLoaded ? (
     <div>
       <Header />
+      <Locate
+        panTo={panTo}
+        setLatitude={setLatitude}
+        setLongitude={setLongitude}
+      />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
@@ -65,6 +112,7 @@ export default function Maptest(props) {
             }}
           />
         ))}
+        <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} />
         {selectedMarker ? (
           <InfoWindow
             position={{
