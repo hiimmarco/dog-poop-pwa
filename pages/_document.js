@@ -7,7 +7,6 @@ class MyDocument extends Document {
         <Head>
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon-192.png" />
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk&libraries=places" />
 
           <meta name="theme-color" content="#fff" />
           <meta name="application-name" content="PWA App" />
@@ -137,3 +136,5 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+/*
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk&libraries=places" /> */

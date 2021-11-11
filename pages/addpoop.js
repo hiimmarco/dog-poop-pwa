@@ -9,7 +9,7 @@ import {
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Head from 'next/head';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -32,15 +32,18 @@ const options = {
   // zoomControl: true,
 };
 
-// const libraries = ['places'];
+const libraries = ['places'];
 
 export default function Addpoop() {
   const [title, setTitle] = useState('');
+  const [markers, setMarkers] = useState({});
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
   // Load Google Maps Scripts
-  const { isLoaded } = useLoadScript({
+  const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
-    // libraries,
+    libraries,
   });
 
   // Load google places autocomplete
@@ -69,13 +72,10 @@ export default function Addpoop() {
     mapRef.current.setZoom(14);
   }, []);
 
-  return !isLoaded ? (
-    <div>
-      <Header />
-      <h2 className="text-3xl text-center mt-8">Loading</h2>
-      <Bottomnav />
-    </div>
-  ) : (
+  if (!isLoaded) return 'Loading';
+  if (loadError) return 'Load error';
+
+  return (
     <div>
       <Header />
       <main>
@@ -102,7 +102,8 @@ export default function Addpoop() {
                   const results = await getGeocode({ address });
                   const { lat, lng } = await getLatLng(results[0]);
                   console.log(lat, lng);
-                  panTo(lat, lng);
+                  setLatitude(lat);
+                  setLongitude(lng);
                 } catch (error) {
                   console.log('Error');
                 }
@@ -131,9 +132,22 @@ export default function Addpoop() {
               zoom={10}
               center={center}
               options={options}
+              onClick={(event) => {
+                setMarkers({
+                  lat: event.latLng.lat(),
+                  lng: event.latLng.lng(),
+                });
+                setLatitude(event.latLng.lat());
+                setLongitude(event.latLng.lng());
+              }}
               onLoad={onMapLoad}
-            />
-            <button className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28">
+            >
+              <Marker position={{ lat: markers.lat, lng: markers.lng }} />
+            </GoogleMap>
+            <button
+              className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
+              onClick={() => console.log(latitude, longitude)}
+            >
               Add poop
             </button>
           </div>
@@ -142,3 +156,11 @@ export default function Addpoop() {
     </div>
   );
 }
+
+/* (
+  <div>
+    <Header />
+    <h2 className="text-3xl text-center mt-8">Loading</h2>
+    <Bottomnav />
+  </div>
+) :  */
