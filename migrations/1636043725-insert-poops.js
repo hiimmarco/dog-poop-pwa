@@ -1,6 +1,7 @@
 const poops = [
   {
     title: 'Poop at Bahnhof',
+    description: 'Hey man, this is a big one.',
     author: 'Robert Kalina',
     latitude: 48.19694,
     longitude: 16.33773,
@@ -9,6 +10,7 @@ const poops = [
   },
   {
     title: 'Big one',
+    description: 'Hey man, this is a big one.',
     author: 'Lisa Rath',
     latitude: 48.21174,
     longitude: 16.37706,
@@ -17,6 +19,7 @@ const poops = [
   },
   {
     title: 'Stay away from here',
+    description: 'Hey man, this is a big one.',
     author: 'Mex Miser',
     latitude: 48.20071,
     longitude: 16.37016,
@@ -25,6 +28,7 @@ const poops = [
   },
   {
     title: 'Those goddman dogs',
+    description: 'Hey man, this is a big one.',
     author: 'Raphael Bader',
     latitude: 48.192528,
     longitude: 16.283246,
@@ -40,9 +44,9 @@ exports.up = async function up(sql) {
   for (const poop of poops) {
     await sql`
     INSERT INTO poops
-(title, author, latitude, longitude, img_url, date)
+(title, description, author, latitude, longitude, img_url, date)
 VALUES
-(${poop.title}, ${poop.author}, ${poop.latitude}, ${poop.longitude}, ${poop.img_url}, ${poop.date});
+(${poop.title}, ${poop.description}, ${poop.author}, ${poop.latitude}, ${poop.longitude}, ${poop.img_url}, ${poop.date});
   `;
   }
 };
@@ -66,7 +70,7 @@ exports.down = async function down(sql) {
 	DELETE FROM
 	  poops
 	WHERE
-   title = ${poop.title} AND author = ${poop.author} AND latitude = ${poop.latitude} AND longitude = ${poop.longitude} AND img_url = ${poop.img_url} AND date = ${poop.date}
+   title = ${poop.title} AND description=${poop.description} AND author = ${poop.author} AND latitude = ${poop.latitude} AND longitude = ${poop.longitude} AND img_url = ${poop.img_url} AND date = ${poop.date}
 `;
   }
 };
@@ -75,7 +79,7 @@ exports.down = async function down(sql) {
   console.log('Inserting the poops into table');
   await sql`
     INSERT INTO poops
-(title, author, latitude, longitude, img_url, date)
+(title, description, author, latitude, longitude, img_url, date)
 VALUES
 ('Poop at Bahnhof', 'Robert Kalina', '48.19694', '16.33773', '/images/1.jpg', '23.12.2014'),
 ('Big one', 'Lisa Rath', '48.21174', '16.37706', '/images/1.jpg', '23.12.2014'),

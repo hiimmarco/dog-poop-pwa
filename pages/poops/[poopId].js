@@ -18,9 +18,7 @@ export default function Poopdetail(props) {
             height="250"
             className="mb-6"
           />
-          <p className="text-base mb-6">
-            A really bad one. I almost stumbled into it.
-          </p>
+          <p className="text-base mb-6">{props.poop.description}</p>
           <Link href="/home">
             <a>
               <p className="font-semibold text-pink-700 underline mb-8">
