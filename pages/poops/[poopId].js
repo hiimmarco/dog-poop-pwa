@@ -18,6 +18,10 @@ export default function Poopdetail(props) {
             height="250"
             className="mb-6"
           />
+          <img
+            src="https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:G%7C48.1957813,16.3425754&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk"
+            alt="Map"
+          />
           <p className="text-base mb-6">{props.poop.description}</p>
           <Link href="/home">
             <a>

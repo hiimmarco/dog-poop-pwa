@@ -7,7 +7,7 @@ exports.up = async function up(sql) {
       email VARCHAR(40) NOT NULL,
 			hash_password VARCHAR(40) NOT NULL,
       user_name VARCHAR(40) NOT NULL,
-			role_id integer NOT NULL
+			role_id integer REFERENCES roles(id) ON DELETE CASCADE
     );
   `;
 };
