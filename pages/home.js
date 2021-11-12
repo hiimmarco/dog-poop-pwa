@@ -28,16 +28,6 @@ export default function Start(props) {
   );
 }
 
-/* export async function getServerSideProps(context) {
-  const { poops } = await import('../util/database');
-
-  return {
-    props: {
-      poops: poops,
-    },
-  };
-} */
-
 export async function getServerSideProps(context) {
   const { getPoops } = await import('../util/database');
 
