@@ -8,7 +8,7 @@ exports.up = async function up(sql) {
       author_id integer REFERENCES users(id),
       latitude VARCHAR(40) NOT NULL,
       longitude VARCHAR(40) NOT NULL,
-      img_url VARCHAR(40) NOT NULL,
+      img_url VARCHAR(40),
       date VARCHAR(40) NOT NULL
     );
   `;

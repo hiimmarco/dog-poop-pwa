@@ -23,3 +23,17 @@ export default function Account() {
     </div>
   );
 }
+
+// Get only the poops connected to the specific user
+
+/* export async function getServerSideProps(context) {
+  const { getPoopsByUserId } = await import('../util/database');
+
+  const poops = await getPoopsByUserId(context.query.accountId);
+
+  return {
+    props: {
+      poops,
+    },
+  };
+} */
