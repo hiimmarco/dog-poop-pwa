@@ -1,5 +1,5 @@
-import Layout from '../Components/Layout';
-import Poopcard from '../Components/Poopcard';
+import Layout from '../../../Components/Layout';
+import Poopcard from '../../../Components/Poopcard';
 
 export default function Start(props) {
   return (
@@ -28,7 +28,7 @@ export default function Start(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const poopsResponse = await fetch('http://localhost:3000/api/poops');
   const poops = await poopsResponse.json();
 
@@ -38,3 +38,5 @@ export async function getServerSideProps() {
     },
   };
 }
+
+// Path is localhost:3000/poops

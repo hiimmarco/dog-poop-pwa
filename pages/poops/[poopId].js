@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../Components/Layout';
@@ -36,14 +37,12 @@ export default function Poopdetail(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { getPoop } = await import('../../util/database');
+/* export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const poopId = convertQueryValue(context.query.poopId);
 
-  const poop = await getPoop(context.query.poopId);
+  const { getPoopById } = await import('../../util/database');
 
-  /*   const poop = poops.find((poop) => {
-    return idFromUrl === poop.id;
-  }); */
+  const poop = await getPoopById(poopId);
 
   return {
     props: {
@@ -51,3 +50,4 @@ export async function getServerSideProps(context) {
     },
   };
 }
+ */
