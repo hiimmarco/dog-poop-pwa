@@ -79,6 +79,9 @@ export async function createPoop({
     (title, description, author_id, latitude, longitude, img_url, date)
   VALUES
     (${title}, ${description}, ${authorId}, ${latitude}, ${longitude}, ${imgUrl}, ${date})
+    RETURNING
+      id,
+      title;
   `;
   return camelcaseKeys(poops[0]);
 }

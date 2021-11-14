@@ -118,11 +118,42 @@ function Search({ setLatitude, setLongitude, panTo }) {
   );
 }
 
-export default function Addpoop() {
+export default function Addpoop(props) {
   const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState(2);
+  const [date, setDate] = useState('25.13.2034');
+  const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState(48.12345);
+  const [longitude, setLongitude] = useState(16.12345);
+  const [imgUrl, setImgUrl] = useState('/img/testimage.jpg');
+
+  async function createPoop(
+    poopTitle,
+    poopDescription,
+    poopAuthor,
+    poopLatitude,
+    poopLongitude,
+    poopImgUrl,
+    poopDate,
+  ) {
+    const poopsResponse = await fetch(`${props.baseUrl}/api/poops`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        poopTitle,
+        poopDescription,
+        poopAuthor,
+        poopLatitude,
+        poopLongitude,
+        poopImgUrl,
+        poopDate,
+      }),
+    });
+    const poops = await poopsResponse.json();
+  }
 
   // Load Google Maps Scripts
   const { isLoaded, loadError } = useLoadScript({
@@ -171,6 +202,46 @@ export default function Addpoop() {
                 }}
               />
             </label>
+            <label className="block text-base font-semibold mb-2">
+              Description:
+              <input
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={description}
+                onChange={(event) => {
+                  setDescription(event.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="block text-base font-semibold mb-2">
+              Author:
+              <input
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={author}
+                onChange={(event) => {
+                  setAuthor(event.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="block text-base font-semibold mb-2">
+              Date:
+              <input
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={date}
+                onChange={(event) => {
+                  setDate(event.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="block text-base font-semibold mb-2">
+              Image-URL:
+              <input
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={imgUrl}
+                onChange={(event) => {
+                  setImgUrl(event.currentTarget.value);
+                }}
+              />
+            </label>
             <p className="font-semibold">Address:</p>
             <Search
               setLatitude={setLatitude}
@@ -202,7 +273,17 @@ export default function Addpoop() {
             </GoogleMap>
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-              onClick={() => console.log(latitude, longitude)}
+              onClick={() =>
+                createPoop(
+                  title,
+                  description,
+                  author,
+                  latitude,
+                  longitude,
+                  imgUrl,
+                  date,
+                )
+              }
             >
               Add poop
             </button>
@@ -211,6 +292,19 @@ export default function Addpoop() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const baseUrl = process.env.BASE_URL;
+  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
+  const poops = await poopsResponse.json();
+
+  return {
+    props: {
+      poops,
+      baseUrl,
+    },
+  };
 }
 
 /* (
