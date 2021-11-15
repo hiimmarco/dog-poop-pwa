@@ -12,6 +12,6 @@ exports.up = async function up(sql) {
 };
 
 // This will remove the users table
-exports.down = async function up(sql) {
+exports.down = async function down(sql) {
   await sql`DROP TABLE users`;
 };

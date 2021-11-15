@@ -1,6 +1,6 @@
 const poops = [
   {
-    title: 'Poop at Bahnhof',
+    title: 'Poops at Bahnhof',
     description: 'Hey man, this is a big one.',
     author_id: 1,
     latitude: 48.19694,
