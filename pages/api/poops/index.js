@@ -27,3 +27,5 @@ export default async function handler(req, res) {
 
 // GET => localhost:3000/api/poops => response is poops[]
 // GET => localhost:3000/api/poops/:id => response is poop{}
+
+// path is localhoast:3000/api/poops

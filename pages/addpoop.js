@@ -8,6 +8,7 @@ import {
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
@@ -153,6 +154,7 @@ export default function Addpoop(props) {
       }),
     });
     const poops = await poopsResponse.json();
+    console.log(poops);
   }
 
   // Load Google Maps Scripts
@@ -271,22 +273,26 @@ export default function Addpoop(props) {
                 }}
               />
             </GoogleMap>
-            <button
-              className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-              onClick={() =>
-                createPoop(
-                  title,
-                  description,
-                  author,
-                  latitude,
-                  longitude,
-                  imgUrl,
-                  date,
-                )
-              }
-            >
-              Add poop
-            </button>
+            <Link href="/home">
+              <a>
+                <button
+                  className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
+                  onClick={() =>
+                    createPoop(
+                      title,
+                      description,
+                      author,
+                      latitude,
+                      longitude,
+                      imgUrl,
+                      date,
+                    )
+                  }
+                >
+                  Add poop
+                </button>
+              </a>
+            </Link>
           </div>
         </div>
       </main>
@@ -294,7 +300,7 @@ export default function Addpoop(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
   const poopsResponse = await fetch(`${baseUrl}/api/poops`);
   const poops = await poopsResponse.json();

@@ -37,12 +37,10 @@ export default function Poopdetail(props) {
   );
 }
 
-/* export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const poopId = convertQueryValue(context.query.poopId);
+export async function getServerSideProps(context) {
+  const { getPoop } = await import('../../util/database');
 
-  const { getPoopById } = await import('../../util/database');
-
-  const poop = await getPoopById(poopId);
+  const poop = await getPoop(context.query.poopId);
 
   return {
     props: {
@@ -50,4 +48,3 @@ export default function Poopdetail(props) {
     },
   };
 }
- */
