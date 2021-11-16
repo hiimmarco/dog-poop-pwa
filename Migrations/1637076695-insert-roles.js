@@ -9,8 +9,6 @@ const roles = [
 
 // This will loop over array and insert poops into the table
 exports.up = async function up(sql) {
-  console.log('Inserting the poops into table');
-
   for (const role of roles) {
     await sql`
     INSERT INTO roles
@@ -23,8 +21,6 @@ VALUES
 
 // This will remove poops from the table
 exports.down = async function down(sql) {
-  console.log('Deleting the roles from table');
-
   for (const role of roles) {
     await sql`
 	DELETE FROM
