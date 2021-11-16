@@ -5,14 +5,7 @@ import Header from '../Components/Header';
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  function newUsername() {
-    return 'Hello';
-  }
-
-  function newPassword() {
-    return 'Hello';
-  }
+  const [email, setEmail] = useState('');
 
   return (
     <div>
@@ -22,26 +15,35 @@ export default function Signup() {
           <div className="mt-8 pl-4 pr-4">
             <p className="mb-8 text-2xl font-medium">Sign up</p>
 
-            <label
-              className="block text-base font-semibold mb-4"
-              for="username"
-            >
+            <label className="block text-base font-semibold mb-4">
               Username:
               <input
                 className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={username}
-                onChange={newUsername}
+                onChange={(event) => {
+                  setUsername(event.currentTarget.value);
+                }}
               />
             </label>
-            <label
-              className="block text-base font-semibold mb-2"
-              for="username"
-            >
+            <label className="block text-base font-semibold mb-4">
+              Email:
+              <input
+                className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.currentTarget.value);
+                }}
+              />
+            </label>
+            <label className="block text-base font-semibold mb-2">
               Password:
               <input
+                type="password"
                 className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={password}
-                onChange={newPassword}
+                onChange={(event) => {
+                  setPassword(event.currentTarget.value);
+                }}
               />
             </label>
 

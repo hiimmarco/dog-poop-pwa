@@ -2,7 +2,7 @@ const users = [
   {
     user_name: 'Manfredo',
     password_hash:
-      '$2b$10$Nra68NN7jcoMbx9edq5Oi.U8Ym8sMxp9bDfcWp3JCXhEc7MNVNvZ2',
+      '$2b$10$nOUIs5kJ7naTuTFkBy1veuK0kSxUFXfuaOKdOKf9xYT0KKIGSJwFa',
     email: 'testmail@example.com',
     role_id: 2,
     poop_id: 3,
@@ -10,7 +10,7 @@ const users = [
   {
     user_name: 'Marco',
     password_hash:
-      '$2b$10$W7s0rgVMjOxWQ2fxQ/cZ5.s0dLCK0tNdh0sKDf/CVmj3qQA3D8NnS',
+      '$2b$10$nOUIs5kJ7naTuTFkBy1veuK0kSxUFXfuaOKdOKf9xYT0KKIGSJwFa',
     email: 'testmail@example.com',
     role_id: 1,
     poop_id: null,
@@ -18,7 +18,7 @@ const users = [
   {
     user_name: 'Lisa',
     password_hash:
-      '$2b$10$W7s0rgVMjOxWQ2fxQ/cZ5.s0dLCK0tNdh0sKDf/CVmj3qQA3D8NnS',
+      '$2b$10$nOUIs5kJ7naTuTFkBy1veuK0kSxUFXfuaOKdOKf9xYT0KKIGSJwFa',
     email: 'testmail@example.com',
     role_id: 2,
     poop_id: 1,
@@ -26,7 +26,7 @@ const users = [
   {
     user_name: 'Esteban',
     password_hash:
-      '$2b$10$W7s0rgVMjOxWQ2fxQ/cZ5.s0dLCK0tNdh0sKDf/CVmj3qQA3D8NnS',
+      '$2b$10$nOUIs5kJ7naTuTFkBy1veuK0kSxUFXfuaOKdOKf9xYT0KKIGSJwFa',
     email: 'testmail@example.com',
     role_id: 2,
     poop_id: 2,

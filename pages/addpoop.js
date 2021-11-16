@@ -7,7 +7,6 @@ import {
   ComboboxPopover,
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import { formatRelative } from 'date-fns';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
