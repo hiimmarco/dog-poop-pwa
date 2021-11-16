@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { getPoop } from '../../../util/database.js';
+import { getPoop } from '../../../util/database.ts';
 
 export default async function handler(req, res) {
   const poop = await getPoop(Number(req.query.poopId));

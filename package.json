@@ -33,6 +33,7 @@
     "@babel/eslint-parser": "^7.15.8",
     "@next/eslint-plugin-next": "^11.1.2",
     "@types/bcrypt": "^5.0.0",
+    "@types/dotenv-safe": "^8.1.2",
     "@types/googlemaps": "^3.43.3",
     "@types/node": "^16.11.6",
     "@types/react": "^17.0.33",
