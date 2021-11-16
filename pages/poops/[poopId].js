@@ -1,3 +1,4 @@
+import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../Components/Layout';
@@ -40,10 +41,6 @@ export async function getServerSideProps(context) {
   const { getPoop } = await import('../../util/database');
 
   const poop = await getPoop(context.query.poopId);
-
-  /*   const poop = poops.find((poop) => {
-    return idFromUrl === poop.id;
-  }); */
 
   return {
     props: {

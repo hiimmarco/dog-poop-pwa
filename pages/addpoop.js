@@ -7,8 +7,10 @@ import {
   ComboboxPopover,
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { formatRelative } from 'date-fns';
 import Head from 'next/head';
-import { useCallback, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -118,11 +120,49 @@ function Search({ setLatitude, setLongitude, panTo }) {
   );
 }
 
-export default function Addpoop() {
+export default function Addpoop(props) {
   const [title, setTitle] = useState('');
+  const [date, setDate] = useState('25.13.2034');
+  const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [latitude, setLatitude] = useState(48.12345);
+  const [longitude, setLongitude] = useState(16.12345);
+  const [currentDate, setCurrentDate] = useState('Testdate');
+
+  // Function to get the date on which the poop was added
+  useEffect(() => {
+    const newDate = new Date();
+    const daydate = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    const wholeDate = `${daydate}.${month}.${year}`;
+    setCurrentDate(wholeDate);
+    console.log(currentDate);
+  }, []);
+  async function createPoop(
+    poopTitle,
+    poopDescription,
+    poopLatitude,
+    poopLongitude,
+    currentDate,
+  ) {
+    const poopsResponse = await fetch(`${props.baseUrl}/api/poops`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        poopTitle,
+        poopDescription,
+        poopLatitude,
+        poopLongitude,
+        currentDate,
+      }),
+    });
+    const poops = await poopsResponse.json();
+    console.log(poops);
+    console.log(currentDate);
+  }
 
   // Load Google Maps Scripts
   const { isLoaded, loadError } = useLoadScript({
@@ -171,6 +211,17 @@ export default function Addpoop() {
                 }}
               />
             </label>
+            <label className="block text-base font-semibold mb-2">
+              Description:
+              <input
+                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                value={description}
+                onChange={(event) => {
+                  setDescription(event.currentTarget.value);
+                }}
+              />
+            </label>
+
             <p className="font-semibold">Address:</p>
             <Search
               setLatitude={setLatitude}
@@ -200,18 +251,47 @@ export default function Addpoop() {
                 }}
               />
             </GoogleMap>
+            {/* <Link href="/home">
+              <a> */}
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-              onClick={() => console.log(latitude, longitude)}
+              onClick={
+                (() => {
+                  getCurrentDate();
+                },
+                () =>
+                  createPoop(
+                    title,
+                    description,
+                    latitude,
+                    longitude,
+                    currentDate,
+                  ))
+              }
             >
               Add poop
             </button>
+            {/*   </a>
+            </Link> */}
           </div>
         </div>
       </main>
     </div>
   );
 }
+
+/* export async function getServerSideProps() {
+  const baseUrl = process.env.BASE_URL;
+  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
+  const poops = await poopsResponse.json();
+
+  return {
+    props: {
+      poops,
+      baseUrl,
+    },
+  };
+} */
 
 /* (
   <div>

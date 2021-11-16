@@ -49,15 +49,49 @@ export async function getPoop(id) {
   return camelcaseKeys(poops[0]);
 }
 
+export async function getPoopById(id) {
+  // Return undefined if userId is not parseable
+  // to an integer
+  if (!id) return undefined;
+
+  const poops = await sql`
+    SELECT
+      *
+    FROM
+      users
+    WHERE
+      id = ${id}
+  `;
+  return poops.map((poop) => camelcaseKeys(poop))[0];
+}
+
+export async function createPoop({
+  title,
+  description,
+  latitude,
+  longitude,
+  date,
+}) {
+  const poops = await sql`
+  INSERT INTO poops
+    (title, description, latitude, longitude, date)
+  VALUES
+    (${title}, ${description}, ${latitude}, ${longitude}, ${date})
+    RETURNING
+      id,
+      title;
+  `;
+  return camelcaseKeys(poops[0]);
+}
+
 // Query to get all the poops added by a specific user
-export async function getPoopsByUserId(userId) {
+/* export async function getPoopsByUserId(userId) {
   const poops = await sql`
   SELECT
     poops.id,
     poops.title,
     poops.latitude,
     poops.longitude,
-    poops.img_url,
     poops.date
   FROM
     users,
@@ -67,4 +101,4 @@ export async function getPoopsByUserId(userId) {
     poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
-}
+} */
