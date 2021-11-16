@@ -7,9 +7,10 @@ import {
   ComboboxPopover,
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { formatRelative } from 'date-fns';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -126,15 +127,24 @@ export default function Addpoop(props) {
   const [markers, setMarkers] = useState({});
   const [latitude, setLatitude] = useState(48.12345);
   const [longitude, setLongitude] = useState(16.12345);
+  const [currentDate, setCurrentDate] = useState('Testdate');
 
+  // Function to get the date on which the poop was added
+  useEffect(() => {
+    const newDate = new Date();
+    const daydate = newDate.getDate();
+    const month = newDate.getMonth() + 1;
+    const year = newDate.getFullYear();
+    const wholeDate = `${daydate}.${month}.${year}`;
+    setCurrentDate(wholeDate);
+    console.log(currentDate);
+  }, []);
   async function createPoop(
     poopTitle,
     poopDescription,
-    poopAuthor,
     poopLatitude,
     poopLongitude,
-    poopImgUrl,
-    poopDate,
+    currentDate,
   ) {
     const poopsResponse = await fetch(`${props.baseUrl}/api/poops`, {
       method: 'POST',
@@ -144,15 +154,14 @@ export default function Addpoop(props) {
       body: JSON.stringify({
         poopTitle,
         poopDescription,
-        poopAuthor,
         poopLatitude,
         poopLongitude,
-        poopImgUrl,
-        poopDate,
+        currentDate,
       }),
     });
     const poops = await poopsResponse.json();
     console.log(poops);
+    console.log(currentDate);
   }
 
   // Load Google Maps Scripts
@@ -213,17 +222,6 @@ export default function Addpoop(props) {
               />
             </label>
 
-            <label className="block text-base font-semibold mb-2">
-              Date:
-              <input
-                className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                value={date}
-                onChange={(event) => {
-                  setDate(event.currentTarget.value);
-                }}
-              />
-            </label>
-
             <p className="font-semibold">Address:</p>
             <Search
               setLatitude={setLatitude}
@@ -253,18 +251,28 @@ export default function Addpoop(props) {
                 }}
               />
             </GoogleMap>
-            <Link href="/home">
-              <a>
-                <button
-                  className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-                  onClick={() =>
-                    createPoop(title, description, latitude, longitude, date)
-                  }
-                >
-                  Add poop
-                </button>
-              </a>
-            </Link>
+            {/* <Link href="/home">
+              <a> */}
+            <button
+              className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
+              onClick={
+                (() => {
+                  getCurrentDate();
+                },
+                () =>
+                  createPoop(
+                    title,
+                    description,
+                    latitude,
+                    longitude,
+                    currentDate,
+                  ))
+              }
+            >
+              Add poop
+            </button>
+            {/*   </a>
+            </Link> */}
           </div>
         </div>
       </main>
@@ -272,7 +280,7 @@ export default function Addpoop(props) {
   );
 }
 
-export async function getServerSideProps() {
+/* export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
   const poopsResponse = await fetch(`${baseUrl}/api/poops`);
   const poops = await poopsResponse.json();
@@ -283,7 +291,7 @@ export async function getServerSideProps() {
       baseUrl,
     },
   };
-}
+} */
 
 /* (
   <div>
