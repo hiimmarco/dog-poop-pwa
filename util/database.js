@@ -91,9 +91,8 @@ export async function insertUser({ user_name, email, password_hash, role_id }) {
     (user_name, password_hash, email, role_id)
   VALUES
     (${user_name}, ${password_hash}, ${email}, ${role_id})
-    RETURNING
-      id,
-      title;
+  RETURNING
+    user_name
   `;
   return camelcaseKeys(newUser[0]);
 }

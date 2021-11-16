@@ -27,7 +27,8 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.cjs",
-    "**/*.mjs"
+    "**/*.mjs",
+    "pages/signup.tsx"
   ],
   "exclude": ["node_modules", "build"]
 }

@@ -1,11 +1,15 @@
+import { loadDefaultErrorComponents } from 'next/dist/server/load-components';
 import Head from 'next/head';
 import { useState } from 'react';
 import Header from '../Components/Header';
+import { Errors } from '../util/types';
+import { RegisterResponse } from './api/register';
 
 export default function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState<Errors>([]);
   const roleId = 2;
 
   return (
@@ -18,19 +22,24 @@ export default function Signup() {
             <form
               onSubmit={async (event) => {
                 event.preventDefault();
-                await fetch('/api/register', {
+                const registerResponse = await fetch('/api/register', {
                   method: 'POST',
                   headers: {
                     'content-type': 'application/json',
                   },
                   body: JSON.stringify({
-                    username: username,
+                    // username: username,
                     email: email,
                     password: password,
                     roleId: roleId,
                   }),
                 });
-                // do something with the values
+                const registerJson =
+                  (await registerResponse.json()) as RegisterResponse;
+                if ('errors' in registerJson) {
+                  setErrors(registerJson.errors);
+                  return;
+                }
               }}
             >
               <label className="block text-base font-semibold mb-4">
@@ -68,6 +77,11 @@ export default function Signup() {
               <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
                 Sign up
               </button>
+              <div className="text-base  text-red-600">
+                {errors.map((error) => (
+                  <div key={`error-${error.message}`}>{error.message}</div>
+                ))}
+              </div>
             </form>
           </div>
         </div>
