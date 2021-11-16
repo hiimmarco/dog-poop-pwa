@@ -1,5 +1,6 @@
 const poops = [
   {
+    author_id: 3,
     title: 'Poops at Bahnhof',
     description: 'Hey man, this is a big one.',
     latitude: 48.19694,
@@ -7,6 +8,7 @@ const poops = [
     date: '23.12.2014',
   },
   {
+    author_id: 1,
     title: 'Big one',
     description: 'Hey man, this is a big one.',
     latitude: 48.21174,
@@ -14,6 +16,7 @@ const poops = [
     date: '23.12.2014',
   },
   {
+    author_id: 3,
     title: 'Stay away from here',
     description: 'Hey man, this is a big one.',
     latitude: 48.20071,
@@ -21,6 +24,7 @@ const poops = [
     date: '23.12.2014',
   },
   {
+    author_id: 4,
     title: 'Those goddman dogs',
     description: 'Hey man, this is a big one.',
     latitude: 48.192528,
@@ -34,9 +38,9 @@ exports.up = async function up(sql) {
   for (const poop of poops) {
     await sql`
     INSERT INTO poops
-(title, description, latitude, longitude, date)
+(author_id, title, description, latitude, longitude, date)
 VALUES
-(${poop.title}, ${poop.description}, ${poop.latitude}, ${poop.longitude}, ${poop.date});
+(${poop.author_id}, ${poop.title}, ${poop.description}, ${poop.latitude}, ${poop.longitude}, ${poop.date});
   `;
   }
 };
@@ -48,7 +52,7 @@ exports.down = async function down(sql) {
 	DELETE FROM
 	  poops
 	WHERE
-   title = ${poop.title} AND description=${poop.description} AND latitude = ${poop.latitude} AND longitude = ${poop.longitude} AND date = ${poop.date}
+   author_id = ${poop.author_id} AND title = ${poop.title} AND description=${poop.description} AND latitude = ${poop.latitude} AND longitude = ${poop.longitude} AND date = ${poop.date}
 `;
   }
 };

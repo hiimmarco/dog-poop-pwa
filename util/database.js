@@ -58,7 +58,7 @@ export async function getPoopById(id) {
     SELECT
       *
     FROM
-      users
+      poops
     WHERE
       id = ${id}
   `;
@@ -66,6 +66,7 @@ export async function getPoopById(id) {
 }
 
 export async function createPoop({
+  author_id,
   title,
   description,
   latitude,
@@ -74,14 +75,27 @@ export async function createPoop({
 }) {
   const poops = await sql`
   INSERT INTO poops
-    (title, description, latitude, longitude, date)
+    (author_id, title, description, latitude, longitude, date)
   VALUES
-    (${title}, ${description}, ${latitude}, ${longitude}, ${date})
+    (${author_id}, ${title}, ${description}, ${latitude}, ${longitude}, ${date})
     RETURNING
       id,
       title;
   `;
   return camelcaseKeys(poops[0]);
+}
+
+export async function insertUser({ user_name, email, password_hash, role_id }) {
+  const newUser = await sql`
+  INSERT INTO users
+    (user_name, password_hash, email, role_id)
+  VALUES
+    (${user_name}, ${password_hash}, ${email}, ${role_id})
+    RETURNING
+      id,
+      title;
+  `;
+  return camelcaseKeys(newUser[0]);
 }
 
 // Query to get all the poops added by a specific user
@@ -97,7 +111,6 @@ export async function createPoop({
     users,
     poops
   WHERE
-    users.id = ${userId} AND
     poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
