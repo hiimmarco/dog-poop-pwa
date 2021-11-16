@@ -15,7 +15,6 @@ export default function Poopcard(props) {
             <h2 className="text-lg font-bold">{props.title}</h2>
           </a>
         </Link>
-        <p className="text-xs">{props.author}</p>
       </div>
     </div>
   );

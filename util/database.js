@@ -68,17 +68,15 @@ export async function getPoopById(id) {
 export async function createPoop({
   title,
   description,
-  authorId,
   latitude,
   longitude,
-  imgUrl,
   date,
 }) {
   const poops = await sql`
   INSERT INTO poops
-    (title, description, author_id, latitude, longitude, img_url, date)
+    (title, description, latitude, longitude, date)
   VALUES
-    (${title}, ${description}, ${authorId}, ${latitude}, ${longitude}, ${imgUrl}, ${date})
+    (${title}, ${description}, ${latitude}, ${longitude}, ${date})
     RETURNING
       id,
       title;
@@ -87,14 +85,13 @@ export async function createPoop({
 }
 
 // Query to get all the poops added by a specific user
-export async function getPoopsByUserId(userId) {
+/* export async function getPoopsByUserId(userId) {
   const poops = await sql`
   SELECT
     poops.id,
     poops.title,
     poops.latitude,
     poops.longitude,
-    poops.img_url,
     poops.date
   FROM
     users,
@@ -104,4 +101,4 @@ export async function getPoopsByUserId(userId) {
     poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
-}
+} */

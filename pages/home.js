@@ -14,7 +14,6 @@ export default function Start(props) {
                 <div key={`id-list-${poop.id}`}>
                   <Poopcard
                     title={poop.title}
-                    author={poop.author}
                     date={poop.date}
                     link={poop.id}
                   />

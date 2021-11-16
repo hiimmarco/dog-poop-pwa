@@ -14,10 +14,8 @@ export default async function handler(req, res) {
     const createdPoop = await createPoop({
       title: body.poopTitle,
       description: body.poopDescription,
-      authorId: body.poopAuthor,
       latitude: body.poopLatitude,
       longitude: body.poopLongitude,
-      imgUrl: body.poopImgUrl,
       date: body.poopDate,
     });
     return res.status(200).json(createdPoop);
