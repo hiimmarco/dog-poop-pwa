@@ -1,7 +1,8 @@
-import Layout from '../Components/Layout';
-import Poopcard from '../Components/Poopcard';
+import { GetServerSidePropsContext } from 'next';
+import Layout from '../../Components/Layout';
+import Poopcard from '../../Components/Poopcard';
 
-export default function Account() {
+export default function Account(props) {
   return (
     <div>
       <Layout />
@@ -10,24 +11,35 @@ export default function Account() {
           <p className="mb-8 text-2xl font-medium">Account</p>
 
           <p className="mb-2 text-base">
-            Username: <span className="font-semibold">Max Moser</span>
+            Username:{' '}
+            <span className="font-semibold">{props.user.username}</span>
           </p>
           <p className="font-semibold text-pink-700 underline mb-8">Log out</p>
           <p className="mb-8 text-xl font-medium">My added poop:</p>
           <Poopcard />
-          <Poopcard />
-          <Poopcard />
-          <Poopcard />
+          {console.log(props.user.username)}
         </div>
       </div>
     </div>
   );
 }
 
+export async function getServerSideProps(context) {
+  const { getUser } = await import('../../util/database.ts');
+
+  const user = await getUser(context.query.userId);
+
+  return {
+    props: {
+      user,
+    },
+  };
+}
+
 // Get only the poops connected to the specific user
 
 /* export async function getServerSideProps(context) {
-  const { getPoopsByUserId } = await import('../util/database');
+  const { getUserById } = await import('../util/database');
 
   const poops = await getPoopsByUserId(context.query.accountId);
 

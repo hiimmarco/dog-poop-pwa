@@ -69,6 +69,7 @@ export async function getPoops() {
   });
 }
 
+// Get only one poop by its ID
 export async function getPoop(id: number) {
   const poops = await sql<Poops[]>`
   SELECT
@@ -80,6 +81,8 @@ export async function getPoop(id: number) {
   `;
   return camelcaseKeys(poops[0]);
 }
+
+// Get only one poop by its ID
 
 export async function getPoopById(id: number) {
   // Return undefined if userId is not parseable
@@ -124,6 +127,35 @@ export async function createPoop({
   return camelcaseKeys(poops[0]);
 }
 
+// Get only one user by its ID
+export async function getUser(id: number) {
+  const users = await sql<User[]>`
+  SELECT
+    *
+  FROM
+    users
+  WHERE
+    id = ${id}
+  `;
+  return camelcaseKeys(users[0]);
+}
+
+export async function getUserById(id: number) {
+  // Return undefined if userId is not parseable
+  // to an integer
+  if (!id) return undefined;
+
+  const poops = await sql`
+    SELECT
+      *
+    FROM
+      poops
+    WHERE
+      id = ${id}
+  `;
+  return poops.map((poop) => camelcaseKeys(poop))[0];
+}
+
 export async function insertUser({
   username,
   email,
@@ -141,7 +173,9 @@ export async function insertUser({
   VALUES
     (${username}, ${passwordHash}, ${email}, ${roleId})
   RETURNING
-    user_name
+    id,
+    user_name,
+    role_id
   `;
   return camelcaseKeys(newUser[0]);
 }

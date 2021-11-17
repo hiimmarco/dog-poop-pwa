@@ -40,6 +40,8 @@ export default function Signup() {
                   setErrors(registerJson.errors);
                   return;
                 }
+
+                console.log(registerJson.user);
               }}
             >
               <label className="block text-base font-semibold mb-4">

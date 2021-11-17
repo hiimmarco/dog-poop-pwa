@@ -22,10 +22,7 @@ export default function Signin() {
           <div className="mt-8 pl-4 pr-4">
             <p className="mb-8 text-2xl font-medium">Sign in</p>
 
-            <label
-              className="block text-base font-semibold mb-4"
-              for="username"
-            >
+            <label className="block text-base font-semibold mb-4">
               Username:
               <input
                 className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -33,10 +30,7 @@ export default function Signin() {
                 onChange={newUsername}
               />
             </label>
-            <label
-              className="block text-base font-semibold mb-2"
-              for="username"
-            >
+            <label className="block text-base font-semibold mb-2">
               Password:
               <input
                 className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

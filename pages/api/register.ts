@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hashPassword } from '../../util/auth';
-import { insertUser } from '../../util/database';
+import { insertUser, User } from '../../util/database';
 import { Errors } from '../../util/types';
 
-export type RegisterResponse = { errors: Errors };
+export type RegisterResponse = { errors: Errors } | { user: User };
 
 export default async function registerHandler(
   req: NextApiRequest,
@@ -22,5 +22,5 @@ export default async function registerHandler(
   const passwordHash = await hashPassword(req.body.password);
   const roleId = req.body.roleId;
   const user = await insertUser({ username, email, passwordHash, roleId });
-  res.send(null);
+  res.send({ user: user });
 }
