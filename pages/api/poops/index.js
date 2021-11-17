@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { createPoop, getPoops } from '../../../util/database.js';
+import { createPoop, getPoops } from '../../../util/database.ts';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {

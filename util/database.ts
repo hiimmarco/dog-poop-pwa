@@ -2,6 +2,38 @@ import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
 
+export type Poops = {
+  id: number;
+  author_id: number;
+  title: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  date: string;
+};
+
+export type User = {
+  id: number;
+  user_name: string;
+  email: string;
+  roleId: number;
+};
+
+export type UserWithPasswordHash = User & {
+  passwordHash: string;
+};
+
+export type Session = {
+  id: number;
+  token: string;
+  userId: number;
+  expiryTimestamp: Date;
+};
+
+// Type needed for the connection function below
+declare module globalThis {
+  let postgresSqlClient: ReturnType<typeof postgres> | undefined;
+}
 // Connect only once to the database
 // https://github.com/vercel/next.js/issues/7811#issuecomment-715259370
 function connectOneTimeToDatabase() {
@@ -13,10 +45,10 @@ function connectOneTimeToDatabase() {
     // https://devcenter.heroku.com/changelog-items/852
     sql = postgres({ ssl: { rejectUnauthorized: false } });
   } else {
-    if (!globalThis.__postgresSqlClient) {
-      globalThis.__postgresSqlClient = postgres();
+    if (!globalThis.postgresSqlClient) {
+      globalThis.postgresSqlClient = postgres();
     }
-    sql = globalThis.__postgresSqlClient;
+    sql = globalThis.postgresSqlClient;
   }
 
   return sql;
@@ -29,7 +61,7 @@ dotenvSafe.config();
 const sql = connectOneTimeToDatabase();
 
 export async function getPoops() {
-  const poops = await sql`
+  const poops = await sql<Poops[]>`
   SELECT * FROM poops;
   `;
   return poops.map((poop) => {
@@ -37,8 +69,8 @@ export async function getPoops() {
   });
 }
 
-export async function getPoop(id) {
-  const poops = await sql`
+export async function getPoop(id: number) {
+  const poops = await sql<Poops[]>`
   SELECT
     *
   FROM
@@ -49,7 +81,7 @@ export async function getPoop(id) {
   return camelcaseKeys(poops[0]);
 }
 
-export async function getPoopById(id) {
+export async function getPoopById(id: number) {
   // Return undefined if userId is not parseable
   // to an integer
   if (!id) return undefined;
@@ -58,7 +90,7 @@ export async function getPoopById(id) {
     SELECT
       *
     FROM
-      users
+      poops
     WHERE
       id = ${id}
   `;
@@ -66,22 +98,52 @@ export async function getPoopById(id) {
 }
 
 export async function createPoop({
+  author_id,
   title,
   description,
   latitude,
   longitude,
   date,
+}: {
+  author_id: number;
+  title: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  date: string;
 }) {
   const poops = await sql`
   INSERT INTO poops
-    (title, description, latitude, longitude, date)
+    (author_id, title, description, latitude, longitude, date)
   VALUES
-    (${title}, ${description}, ${latitude}, ${longitude}, ${date})
+    (${author_id}, ${title}, ${description}, ${latitude}, ${longitude}, ${date})
     RETURNING
       id,
       title;
   `;
   return camelcaseKeys(poops[0]);
+}
+
+export async function insertUser({
+  username,
+  email,
+  passwordHash,
+  roleId,
+}: {
+  username: string;
+  email: string;
+  passwordHash: string;
+  roleId: number;
+}) {
+  const newUser = await sql<User[]>`
+  INSERT INTO users
+    (user_name, password_hash, email, role_id)
+  VALUES
+    (${username}, ${passwordHash}, ${email}, ${roleId})
+  RETURNING
+    user_name
+  `;
+  return camelcaseKeys(newUser[0]);
 }
 
 // Query to get all the poops added by a specific user
@@ -97,7 +159,6 @@ export async function createPoop({
     users,
     poops
   WHERE
-    users.id = ${userId} AND
     poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
