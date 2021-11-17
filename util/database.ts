@@ -14,7 +14,7 @@ export type Poops = {
 
 export type User = {
   id: number;
-  user_name: string;
+  username: string;
   email: string;
   roleId: number;
 };
