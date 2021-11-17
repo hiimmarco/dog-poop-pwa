@@ -17,10 +17,20 @@ export default async function registerHandler(
     });
     return;
   }
-  const username = req.body.username;
-  const email = req.body.email;
-  const passwordHash = await hashPassword(req.body.password);
-  const roleId = req.body.roleId;
-  const user = await insertUser({ username, email, passwordHash, roleId });
-  res.send({ user: user });
+  try {
+    const username = req.body.username;
+    const email = req.body.email;
+    const passwordHash = await hashPassword(req.body.password);
+    const roleId = req.body.roleId;
+    const user = await insertUser({ username, email, passwordHash, roleId });
+    res.send({ user: user });
+  } catch (err) {
+    res.status(500).send({
+      errors: [
+        {
+          message: 'Username already exists. Please choose another username.',
+        },
+      ],
+    });
+  }
 }

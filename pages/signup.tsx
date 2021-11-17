@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router';
 import { loadDefaultErrorComponents } from 'next/dist/server/load-components';
 import Head from 'next/head';
 import { useState } from 'react';
@@ -11,6 +12,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<Errors>([]);
   const roleId = 2;
+  const router = useRouter();
 
   return (
     <div>
@@ -41,7 +43,7 @@ export default function Signup() {
                   return;
                 }
 
-                console.log(registerJson.user);
+                router.push('/home');
               }}
             >
               <label className="block text-base font-semibold mb-4">

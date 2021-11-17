@@ -129,15 +129,17 @@ export async function createPoop({
 
 // Get only one user by its ID
 export async function getUser(id: number) {
-  const users = await sql<User[]>`
+  const [user] = await sql<[User]>`
   SELECT
-    *
+    id,
+    user_name,
+    role_id
   FROM
     users
   WHERE
     id = ${id}
   `;
-  return camelcaseKeys(users[0]);
+  return camelcaseKeys(user);
 }
 
 export async function getUserById(id: number) {
@@ -147,13 +149,31 @@ export async function getUserById(id: number) {
 
   const poops = await sql`
     SELECT
-      *
+     id,
+     user_name,
+     role_id
     FROM
-      poops
+      users
     WHERE
       id = ${id}
   `;
   return poops.map((poop) => camelcaseKeys(poop))[0];
+}
+
+// Get user with password hash
+export async function getUserWithPasswordHashByUsername(username: string) {
+  const [user] = await sql<[UserWithPasswordHash | undefined]>`
+  SELECT
+    id,
+    user_name,
+    role_id,
+    password_hash
+  FROM
+    users
+  WHERE
+    user_name = ${username}
+  `;
+  return user && camelcaseKeys(user);
 }
 
 export async function insertUser({
