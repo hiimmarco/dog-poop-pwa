@@ -40,8 +40,12 @@ export default function Signin() {
                   setErrors(loginJson.errors);
                   return;
                 }
-
-                router.push('/home');
+                const destination =
+                  typeof router.query.returnTo === 'string' &&
+                  router.query.returnTo
+                    ? router.query.returnTo
+                    : '/home';
+                router.push(destination);
               }}
             >
               <label className="block text-base font-semibold mb-4">
