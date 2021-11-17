@@ -12,12 +12,11 @@ export default function Account(props) {
 
           <p className="mb-2 text-base">
             Username:{' '}
-            <span className="font-semibold">{props.user.username}</span>
+            <span className="font-semibold">{props.user.userName}</span>
           </p>
           <p className="font-semibold text-pink-700 underline mb-8">Log out</p>
           <p className="mb-8 text-xl font-medium">My added poop:</p>
           <Poopcard />
-          {console.log(props.user.username)}
         </div>
       </div>
     </div>
@@ -28,10 +27,10 @@ export async function getServerSideProps(context) {
   const { getUser } = await import('../../util/database.ts');
 
   const user = await getUser(context.query.userId);
-
+  console.log(user);
   return {
     props: {
-      user,
+      user: user,
     },
   };
 }

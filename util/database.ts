@@ -181,8 +181,8 @@ export async function insertUser({
 }
 
 // Query to get all the poops added by a specific user
-/* export async function getPoopsByUserId(userId) {
-  const poops = await sql`
+export async function getPoopsByUserId(userId: number) {
+  const poops = await sql<Poops[]>`
   SELECT
     poops.id,
     poops.title,
@@ -193,7 +193,8 @@ export async function insertUser({
     users,
     poops
   WHERE
-    poops.author_id = users.id
+    users.id = ${userId} AND
+    poops.author_id = userId
   `;
   return poops.map((poop) => camelcaseKeys(poop));
-} */
+}
