@@ -39,7 +39,6 @@ function Locate({ panTo, setLongitude, setLatitude }) {
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            console.log(position);
             panTo({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
@@ -121,7 +120,6 @@ function Search({ setLatitude, setLongitude, panTo }) {
 
 export default function Addpoop(props) {
   const [title, setTitle] = useState('');
-  const [date, setDate] = useState('25.13.2034');
   const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
   const [latitude, setLatitude] = useState(48.12345);
@@ -136,14 +134,14 @@ export default function Addpoop(props) {
     const year = newDate.getFullYear();
     const wholeDate = `${daydate}.${month}.${year}`;
     setCurrentDate(wholeDate);
-    console.log(currentDate);
   }, []);
+
   async function createPoop(
     poopTitle,
     poopDescription,
     poopLatitude,
     poopLongitude,
-    currentDate,
+    poopDate,
   ) {
     const poopsResponse = await fetch(`${props.baseUrl}/api/poops`, {
       method: 'POST',
@@ -155,12 +153,11 @@ export default function Addpoop(props) {
         poopDescription,
         poopLatitude,
         poopLongitude,
-        currentDate,
+        poopDate,
       }),
     });
     const poops = await poopsResponse.json();
     console.log(poops);
-    console.log(currentDate);
   }
 
   // Load Google Maps Scripts
@@ -254,24 +251,12 @@ export default function Addpoop(props) {
               <a> */}
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-              onClick={
-                (() => {
-                  getCurrentDate();
-                },
-                () =>
-                  createPoop(
-                    title,
-                    description,
-                    latitude,
-                    longitude,
-                    currentDate,
-                  ))
+              onClick={() =>
+                createPoop(title, description, latitude, longitude, currentDate)
               }
             >
               Add poop
             </button>
-            {/*   </a>
-            </Link> */}
           </div>
         </div>
       </main>
@@ -281,12 +266,9 @@ export default function Addpoop(props) {
 
 export async function getServerSideProps(context) {
   const { getValidSessionByToken } = await import('../util/database');
-
+  const baseUrl = process.env.BASE_URL;
   const sessionToken = context.req.cookies.sessionToken;
-
   const session = await getValidSessionByToken(sessionToken);
-
-  console.log(session);
 
   if (!session) {
     // Redirect the user when they have a session
@@ -300,7 +282,9 @@ export async function getServerSideProps(context) {
     };
   }
   return {
-    props: {},
+    props: {
+      baseUrl,
+    },
   };
 }
 
@@ -316,11 +300,3 @@ export async function getServerSideProps(context) {
     },
   };
 } */
-
-/* (
-  <div>
-    <Header />
-    <h2 className="text-3xl text-center mt-8">Loading</h2>
-    <Bottomnav />
-  </div>
-) :  */
