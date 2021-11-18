@@ -218,3 +218,16 @@ export async function getPoopsByUserId(userId: number) {
   `;
   return poops.map((poop) => camelcaseKeys(poop));
 }
+
+export async function createSession(token: string, userId: number) {
+  const [session] = await sql<[Session]>`
+    INSERT INTO sessions
+      (token, user_id)
+    VALUES
+      (${token}, ${userId})
+    RETURNING
+      *
+  `;
+
+  return camelcaseKeys(session);
+}

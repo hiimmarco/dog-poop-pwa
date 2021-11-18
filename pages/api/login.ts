@@ -1,6 +1,11 @@
+import crypto from 'node:crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { verifyPassword } from '../../util/auth';
-import { getUserWithPasswordHashByUsername, User } from '../../util/database';
+import {
+  createSession,
+  getUserWithPasswordHashByUsername,
+  User,
+} from '../../util/database';
 import { Errors } from '../../util/types';
 
 export type LoginResponse = { errors: Errors } | { user: User };
@@ -42,6 +47,15 @@ export default async function loginHandler(
       });
       return;
     }
+
+    // Create the record in the session table with a token:
+    // 1. Create a token
+    const token = crypto.randomBytes(64).toString('base64');
+    // 2. Add the session record to the DB via a query
+    const newSession = await createSession(token, userWithPasswordHash.id);
+    // 3. Set the response to create the cookie in the browser
+
+    asdfasdf;
 
     const { passwordHash, ...user } = userWithPasswordHash;
 
