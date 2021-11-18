@@ -1,9 +1,10 @@
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { hashPassword } from '../../util/auth';
 import { createSerializedRegisterSessionTokenCookie } from '../../util/cookies';
 import {
   createSession,
+  deleteExpiredSessions,
   getUserWithPasswordHashByUsername,
   insertUser,
   User,
@@ -42,13 +43,13 @@ export default async function registerHandler(
     const roleId = req.body.roleId;
     const user = await insertUser({ username, email, passwordHash, roleId });
 
-    // clean old sessions
-    // deleteExpiredSessions();
-
     if (!user) {
       res.status(500).send({ errors: [{ message: 'User not create' }] });
       return;
     }
+
+    // clean old sessions
+    deleteExpiredSessions();
 
     // Create the record in the sessions table with a new token
 

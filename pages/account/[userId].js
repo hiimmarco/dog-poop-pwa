@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 import Layout from '../../Components/Layout';
 import Poopcard from '../../Components/Poopcard';
 
@@ -14,7 +14,14 @@ export default function Account(props) {
             Username:{' '}
             <span className="font-semibold">{props.user.userName}</span>
           </p>
-          <p className="font-semibold text-pink-700 underline mb-8">Log out</p>
+          <Link href="/logout">
+            <a>
+              {' '}
+              <p className="font-semibold text-pink-700 underline mb-8">
+                Log out
+              </p>
+            </a>
+          </Link>
           <p className="mb-8 text-xl font-medium">My added poop:</p>
           <Poopcard />
         </div>

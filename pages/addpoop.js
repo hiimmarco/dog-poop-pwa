@@ -279,6 +279,31 @@ export default function Addpoop(props) {
   );
 }
 
+export async function getServerSideProps(context) {
+  const { getValidSessionByToken } = await import('../util/database');
+
+  const sessionToken = context.req.cookies.sessionToken;
+
+  const session = await getValidSessionByToken(sessionToken);
+
+  console.log(session);
+
+  if (!session) {
+    // Redirect the user when they have a session
+    // token by returning an object with the `redirect` prop
+    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
+    return {
+      redirect: {
+        destination: '/signin?returnTo=/addpoop',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
 /* export async function getServerSideProps() {
   const baseUrl = process.env.BASE_URL;
   const poopsResponse = await fetch(`${baseUrl}/api/poops`);
