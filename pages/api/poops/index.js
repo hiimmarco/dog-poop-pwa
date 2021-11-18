@@ -5,12 +5,10 @@ import { createPoop, getPoops } from '../../../util/database.ts';
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const poops = await getPoops();
-    console.log(poops);
     return res.status(200).json(poops);
   } else if (req.method === 'POST') {
     // The code for the post request
     const body = req.body;
-    console.log('from post', body);
     const createdPoop = await createPoop({
       title: body.poopTitle,
       description: body.poopDescription,

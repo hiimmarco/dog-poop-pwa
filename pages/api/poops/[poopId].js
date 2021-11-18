@@ -4,7 +4,6 @@ import { getPoop } from '../../../util/database.ts';
 
 export default async function handler(req, res) {
   const poop = await getPoop(Number(req.query.poopId));
-  console.log(Number(req.query.poopId));
   res.status(200).json(poop);
 }
 

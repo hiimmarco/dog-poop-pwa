@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { verifyPassword } from '../../util/auth';
+import { createSerializedRegisterSessionTokenCookie } from '../../util/cookies';
 import {
   createSession,
   getUserWithPasswordHashByUsername,
@@ -54,12 +55,11 @@ export default async function loginHandler(
     // 2. Add the session record to the DB via a query
     const newSession = await createSession(token, userWithPasswordHash.id);
     // 3. Set the response to create the cookie in the browser
-
-    asdfasdf;
+    const cookie = createSerializedRegisterSessionTokenCookie(newSession.token);
 
     const { passwordHash, ...user } = userWithPasswordHash;
 
-    res.send({ user: user });
+    res.status(200).setHeader('Set-Cookie', cookie).send({ user: user });
   } catch (err) {
     res.status(500).send({
       errors: [
