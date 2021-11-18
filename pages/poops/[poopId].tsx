@@ -2,8 +2,13 @@ import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../../Components/Layout';
+import { Poops } from '../../util/database';
 
-export default function Poopdetail(props) {
+type Props = {
+  poop: Poops;
+};
+
+export default function Poopdetail(props: Props) {
   return (
     <div>
       <Layout />
@@ -11,16 +16,10 @@ export default function Poopdetail(props) {
         <div className="mt-8 pl-4 pr-4">
           <p className=" text-xs">{props.poop.date}</p>
           <h1 className="mb-1 text-2xl font-medium">{props.poop.title}</h1>
-          <p className="font-regular text-sm mb-6">by {props.poop.author}</p>
+          <p className="font-regular text-sm mb-6">by {props.poop.author_id}</p>
+
           <img
-            src="/images/bigmap.png"
-            alt="Map"
-            width="375"
-            height="250"
-            className="mb-6"
-          />
-          <img
-            src="https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:G%7C48.1957813,16.3425754&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk"
+            src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:G%7C${props.poop.latitude},${props.poop.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
             alt="Map"
           />
           <p className="text-base mb-6">{props.poop.description}</p>
@@ -37,10 +36,10 @@ export default function Poopdetail(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { getPoop } = await import('../../util/database');
 
-  const poop = await getPoop(context.query.poopId);
+  const poop = await getPoop(Number(context.query.poopId));
 
   return {
     props: {

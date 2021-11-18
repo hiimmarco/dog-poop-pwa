@@ -1,12 +1,11 @@
 import { useRouter } from 'next/dist/client/router';
-import { loadDefaultErrorComponents } from 'next/dist/server/load-components';
 import Head from 'next/head';
 import { useState } from 'react';
 import Header from '../Components/Header';
 import { Errors } from '../util/types';
-import { RegisterResponse } from './api/register';
+import { LoginResponse } from './api/login';
 
-export default function Signup() {
+export default function Signin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -20,11 +19,11 @@ export default function Signup() {
       <main>
         <div className="flex flex-col h-screen">
           <div className="mt-8 pl-4 pr-4">
-            <p className="mb-8 text-2xl font-medium">Sign up</p>
+            <p className="mb-8 text-2xl font-medium">Sign in</p>
             <form
               onSubmit={async (event) => {
                 event.preventDefault();
-                const registerResponse = await fetch('/api/register', {
+                const loginResponse = await fetch('/api/login', {
                   method: 'POST',
                   headers: {
                     'content-type': 'application/json',
@@ -36,10 +35,9 @@ export default function Signup() {
                     roleId: roleId,
                   }),
                 });
-                const registerJson =
-                  (await registerResponse.json()) as RegisterResponse;
-                if ('errors' in registerJson) {
-                  setErrors(registerJson.errors);
+                const loginJson = (await loginResponse.json()) as LoginResponse;
+                if ('errors' in loginJson) {
+                  setErrors(loginJson.errors);
                   return;
                 }
                 const destination =
@@ -60,16 +58,7 @@ export default function Signup() {
                   }}
                 />
               </label>
-              <label className="block text-base font-semibold mb-4">
-                Email:
-                <input
-                  className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.currentTarget.value);
-                  }}
-                />
-              </label>
+
               <label className="block text-base font-semibold mb-2">
                 Password:
                 <input
@@ -83,7 +72,7 @@ export default function Signup() {
               </label>
 
               <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
-                Sign up
+                Sign in
               </button>
               <div className="text-base  text-red-600">
                 {errors.map((error) => (

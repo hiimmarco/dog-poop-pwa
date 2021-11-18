@@ -14,7 +14,7 @@ export type Poops = {
 
 export type User = {
   id: number;
-  user_name: string;
+  username: string;
   email: string;
   roleId: number;
 };
@@ -69,6 +69,7 @@ export async function getPoops() {
   });
 }
 
+// Get only one poop by its ID
 export async function getPoop(id: number) {
   const poops = await sql<Poops[]>`
   SELECT
@@ -80,6 +81,8 @@ export async function getPoop(id: number) {
   `;
   return camelcaseKeys(poops[0]);
 }
+
+// Get only one poop by its ID
 
 export async function getPoopById(id: number) {
   // Return undefined if userId is not parseable
@@ -124,6 +127,55 @@ export async function createPoop({
   return camelcaseKeys(poops[0]);
 }
 
+// Get only one user by its ID
+export async function getUser(id: number) {
+  const [user] = await sql<[User]>`
+  SELECT
+    id,
+    user_name,
+    role_id
+  FROM
+    users
+  WHERE
+    id = ${id}
+  `;
+  return camelcaseKeys(user);
+}
+
+export async function getUserById(id: number) {
+  // Return undefined if userId is not parseable
+  // to an integer
+  if (!id) return undefined;
+
+  const poops = await sql`
+    SELECT
+     id,
+     user_name,
+     role_id
+    FROM
+      users
+    WHERE
+      id = ${id}
+  `;
+  return poops.map((poop) => camelcaseKeys(poop))[0];
+}
+
+// Get user with password hash
+export async function getUserWithPasswordHashByUsername(username: string) {
+  const [user] = await sql<[UserWithPasswordHash | undefined]>`
+  SELECT
+    id,
+    user_name,
+    role_id,
+    password_hash
+  FROM
+    users
+  WHERE
+    user_name = ${username}
+  `;
+  return user && camelcaseKeys(user);
+}
+
 export async function insertUser({
   username,
   email,
@@ -141,14 +193,16 @@ export async function insertUser({
   VALUES
     (${username}, ${passwordHash}, ${email}, ${roleId})
   RETURNING
-    user_name
+    id,
+    user_name,
+    role_id
   `;
   return camelcaseKeys(newUser[0]);
 }
 
 // Query to get all the poops added by a specific user
-/* export async function getPoopsByUserId(userId) {
-  const poops = await sql`
+export async function getPoopsByUserId(userId: number) {
+  const poops = await sql<Poops[]>`
   SELECT
     poops.id,
     poops.title,
@@ -159,7 +213,21 @@ export async function insertUser({
     users,
     poops
   WHERE
-    poops.author_id = users.id
+    users.id = ${userId} AND
+    poops.author_id = userId
   `;
   return poops.map((poop) => camelcaseKeys(poop));
-} */
+}
+
+export async function createSession(token: string, userId: number) {
+  const [session] = await sql<[Session]>`
+    INSERT INTO sessions
+      (token, user_id)
+    VALUES
+      (${token}, ${userId})
+    RETURNING
+      *
+  `;
+
+  return camelcaseKeys(session);
+}
