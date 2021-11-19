@@ -89,7 +89,6 @@ function Search({ setLatitude, setLongitude, panTo }) {
           try {
             const results = await getGeocode({ address });
             const { lat, lng } = await getLatLng(results[0]);
-            console.log(lat, lng);
             setLatitude(lat);
             setLongitude(lng);
             panTo({ lat, lng });

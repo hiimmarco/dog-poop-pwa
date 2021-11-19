@@ -48,10 +48,7 @@ export async function getServerSideProps(context) {
   const { getPoopsByUserId } = await import('../util/database');
   const user = await getUserBySessionToken(context.req.cookies.sessionToken);
 
-  console.log(user);
   const poops = await getPoopsByUserId(user.id);
-
-  console.log(poops);
 
   return {
     props: {
