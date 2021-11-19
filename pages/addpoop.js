@@ -121,6 +121,7 @@ function Search({ setLatitude, setLongitude, panTo }) {
 
 export default function Addpoop(props) {
   const [title, setTitle] = useState('');
+  const [authorId, setAuthorId] = useState(5);
   const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
   const [latitude, setLatitude] = useState(48.12345);
@@ -139,6 +140,7 @@ export default function Addpoop(props) {
   }, []);
 
   async function createPoop(
+    poopAuthorId,
     poopTitle,
     poopDescription,
     poopLatitude,
@@ -151,6 +153,7 @@ export default function Addpoop(props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        poopAuthorId,
         poopTitle,
         poopDescription,
         poopLatitude,
@@ -254,7 +257,14 @@ export default function Addpoop(props) {
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
               onClick={() =>
-                createPoop(title, description, latitude, longitude, currentDate)
+                createPoop(
+                  authorId,
+                  title,
+                  description,
+                  latitude,
+                  longitude,
+                  currentDate,
+                )
               }
             >
               Add poop
@@ -268,6 +278,9 @@ export default function Addpoop(props) {
 
 export async function getServerSideProps(context) {
   const { getValidSessionByToken } = await import('../util/database');
+  const { getUserBySessionToken } = await import('../util/database');
+  const user = await getUserBySessionToken(context.req.cookies.sessionToken);
+
   const baseUrl = process.env.BASE_URL;
   const sessionToken = context.req.cookies.sessionToken;
   const session = await getValidSessionByToken(sessionToken);
@@ -286,6 +299,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       baseUrl,
+      user,
     },
   };
 }

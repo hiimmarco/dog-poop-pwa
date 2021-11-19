@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import Layout from '../../Components/Layout';
-import Poopcard from '../../Components/Poopcard';
+import Layout from '../Components/Layout';
+import Poopcard from '../Components/Poopcard';
 
 export default function Account(props) {
   return (
@@ -14,6 +14,7 @@ export default function Account(props) {
             Username:{' '}
             <span className="font-semibold">{props.user.userName}</span>
           </p>
+
           <Link href="/logout">
             <a>
               {' '}
@@ -23,7 +24,19 @@ export default function Account(props) {
             </a>
           </Link>
           <p className="mb-8 text-xl font-medium">My added poop:</p>
-          <Poopcard />
+          <div>
+            {props.poops.map((poop) => {
+              return (
+                <div key={`id-list-${poop.id}`}>
+                  <Poopcard
+                    title={poop.title}
+                    date={poop.date}
+                    link={poop.id}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -31,27 +44,19 @@ export default function Account(props) {
 }
 
 export async function getServerSideProps(context) {
-  const { getUser } = await import('../../util/database.ts');
+  const { getUserBySessionToken } = await import('../util/database');
+  const { getPoopsByUserId } = await import('../util/database');
+  const user = await getUserBySessionToken(context.req.cookies.sessionToken);
 
-  const user = await getUser(context.query.userId);
   console.log(user);
-  return {
-    props: {
-      user: user,
-    },
-  };
-}
+  const poops = await getPoopsByUserId(user.id);
 
-// Get only the poops connected to the specific user
-
-/* export async function getServerSideProps(context) {
-  const { getUserById } = await import('../util/database');
-
-  const poops = await getPoopsByUserId(context.query.accountId);
+  console.log(poops);
 
   return {
     props: {
+      user,
       poops,
     },
   };
-} */
+}

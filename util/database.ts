@@ -180,6 +180,23 @@ export async function getUserWithPasswordHashByUsername(username: string) {
   return user && camelcaseKeys(user);
 }
 
+export async function getUserBySessionToken(sessionToken: string | undefined) {
+  if (!sessionToken) return undefined;
+
+  const [user] = await sql<[User | undefined]>`
+    SELECT
+      users.id,
+      users.user_name
+    FROM
+      sessions,
+      users
+    WHERE
+      sessions.token = ${sessionToken} AND
+      sessions.user_id = users.id
+  `;
+  return user && camelcaseKeys(user);
+}
+
 export async function insertUser({
   username,
   email,
@@ -218,7 +235,7 @@ export async function getPoopsByUserId(userId: number) {
     poops
   WHERE
     users.id = ${userId} AND
-    poops.author_id = userId
+    poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
 }

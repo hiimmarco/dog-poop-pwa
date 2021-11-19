@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     // The code for the post request
     const body = req.body;
     const createdPoop = await createPoop({
-      author_id: 2, // should come from the addpoop.js page via session token/user id
+      author_id: body.poopAuthorId, // should come from the addpoop.js page via session token/user id
       title: body.poopTitle,
       description: body.poopDescription,
       latitude: body.poopLatitude,
