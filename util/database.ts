@@ -62,7 +62,11 @@ const sql = connectOneTimeToDatabase();
 
 export async function getPoops() {
   const poops = await sql<Poops[]>`
-  SELECT * FROM poops;
+  SELECT
+    *
+  FROM
+    poops
+  ORDER BY id DESC
   `;
   return poops.map((poop) => {
     return camelcaseKeys(poop);

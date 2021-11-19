@@ -7,6 +7,7 @@ import {
   ComboboxPopover,
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -125,6 +126,7 @@ export default function Addpoop(props) {
   const [latitude, setLatitude] = useState(48.12345);
   const [longitude, setLongitude] = useState(16.12345);
   const [currentDate, setCurrentDate] = useState('Testdate');
+  const router = useRouter();
 
   // Function to get the date on which the poop was added
   useEffect(() => {
@@ -157,7 +159,7 @@ export default function Addpoop(props) {
       }),
     });
     const poops = await poopsResponse.json();
-    console.log(poops);
+    router.push('/home');
   }
 
   // Load Google Maps Scripts
