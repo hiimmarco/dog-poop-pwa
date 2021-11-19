@@ -120,13 +120,13 @@ function Search({ setLatitude, setLongitude, panTo }) {
 
 export default function Addpoop(props) {
   const [title, setTitle] = useState('');
-  const [authorId, setAuthorId] = useState(5);
   const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
   const [latitude, setLatitude] = useState(48.12345);
   const [longitude, setLongitude] = useState(16.12345);
   const [currentDate, setCurrentDate] = useState('Testdate');
   const router = useRouter();
+  const authorId = props.user.id;
 
   // Function to get the date on which the poop was added
   useEffect(() => {
