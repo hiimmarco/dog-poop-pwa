@@ -127,6 +127,7 @@ export default function Addpoop(props) {
   const [currentDate, setCurrentDate] = useState('Testdate');
   const router = useRouter();
   const authorId = props.user.id;
+  console.log(authorId);
 
   // Function to get the date on which the poop was added
   useEffect(() => {

@@ -131,6 +131,19 @@ export async function createPoop({
   return camelcaseKeys(poops[0]);
 }
 
+export async function deletePoopById(id: number) {
+  const [poop] = await sql<[Poops | undefined]>`
+    DELETE FROM
+      poops
+    WHERE
+      id = ${id}
+  RETURNING
+    id,
+    title
+  `;
+  return poop && camelcaseKeys(poop);
+}
+
 // Get only one user by its ID
 export async function getUser(id: number) {
   const [user] = await sql<[User]>`
