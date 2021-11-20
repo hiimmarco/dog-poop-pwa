@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../../Components/Layout';
 import { Poops } from '../../util/database';
@@ -18,9 +19,11 @@ export default function Poopdetail(props: Props) {
           <h1 className="mb-1 text-2xl font-medium">{props.poop.title}</h1>
           <p className="font-regular text-sm mb-6">by {props.poop.author_id}</p>
 
-          <img
+          <Image
             src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:G%7C${props.poop.latitude},${props.poop.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
-            alt="Map"
+            alt="Picture of the author"
+            width={500}
+            height={500}
           />
           <p className="text-base mb-6">{props.poop.description}</p>
           <Link href="/home">

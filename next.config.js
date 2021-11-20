@@ -10,5 +10,11 @@ module.exports = withPWA({
   },
 });
 
+module.exports = {
+  images: {
+    domains: ['maps.googleapis.com'],
+  },
+};
+
 // Disable service workers for development: process.env.NODE_ENV === 'development'
 // Activate service workers for testing and prod: false
