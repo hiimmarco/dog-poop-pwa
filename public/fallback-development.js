@@ -7,10 +7,11 @@
     // https://developer.mozilla.org/en-US/docs/Web/API/RequestDestination
     switch (request.destination) {
       case 'document':
-        if (true)
+        if (true) {
           return caches.match('/_offline', {
             ignoreSearch: true,
           });
+        }
 
       case 'image':
         if (false) {
