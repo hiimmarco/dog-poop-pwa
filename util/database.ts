@@ -33,6 +33,9 @@ export type Session = {
   expiryTimestamp: Date;
 };
 
+// Read in the .env environment variables in the file to connect to postgres
+dotenvSafe.config();
+
 // Type needed for the connection function below
 declare module globalThis {
   let postgresSqlClient: ReturnType<typeof postgres> | undefined;
@@ -56,8 +59,6 @@ function connectOneTimeToDatabase() {
 
   return sql;
 }
-// Read in the .env environment variables in the file to connect to postgres
-dotenvSafe.config();
 
 // Connect to postgres
 const sql = connectOneTimeToDatabase();
