@@ -8,7 +8,9 @@ import Header from '../Components/Header';
 import { Errors } from '../util/types';
 import { RegisterResponse } from './api/register';
 
-export default function Signup() {
+type Props = { csrfToken: string };
+
+export default function Signup(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -36,6 +38,7 @@ export default function Signup() {
                     email: email,
                     password: password,
                     roleId: roleId,
+                    csrfToken: props.csrfToken,
                   }),
                 });
                 const registerJson =
@@ -108,7 +111,7 @@ export default function Signup() {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { getValidSessionByToken } = await import('../util/database');
-  // const { createToken } = await import('../util/csrf');
+  const { createToken } = await import('../util/csrf');
 
   // Redirect from HTTP to HTTPS on Heroku
   if (
@@ -144,7 +147,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   return {
     props: {
-      // csrfToken: createToken(),
+      csrfToken: createToken(),
     },
   };
 }
