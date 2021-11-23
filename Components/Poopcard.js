@@ -12,7 +12,9 @@ export default function Poopcard(props) {
         <p className="text-xs text-pink-700">{props.date}</p>
         <Link href={`/poops/${props.link}`}>
           <a>
-            <h2 className="text-lg font-bold text-gray-700">{props.title}</h2>
+            <h2 className="text-lg font-semibold text-gray-700">
+              {props.title}
+            </h2>
           </a>
         </Link>
       </div>

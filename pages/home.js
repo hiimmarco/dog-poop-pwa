@@ -7,7 +7,7 @@ export default function Start(props) {
       <Layout />
       <div className="flex flex-col h-screen ">
         <div className="mt-8 pl-4 pr-4 overflow-y-auto">
-          <p className="mb-8 text-2xl font-medium text-gray-700">
+          <p className="mb-8 text-2xl font-semibold text-gray-700">
             Recently added
           </p>
           <div>
