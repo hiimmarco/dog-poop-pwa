@@ -27,7 +27,7 @@ export default function Start(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const poopsResponse = await fetch('http://localhost:3000/api/poops');
   const poops = await poopsResponse.json();
 

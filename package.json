@@ -10,10 +10,8 @@
     "migrate": "dotenv ley"
   },
   "dependencies": {
-    "@emotion/react": "^11.5.0",
     "@reach/combobox": "^0.16.3",
     "@react-google-maps/api": "^2.5.0",
-    "@types/cookie": "^0.4.1",
     "autoprefixer": "^10.4.0",
     "bcrypt": "^5.0.1",
     "camelcase-keys": "^7.0.1",
@@ -21,7 +19,6 @@
     "csrf": "^3.1.0",
     "dotenv-cli": "^4.1.0",
     "dotenv-safe": "^8.2.0",
-    "js-cookie": "^3.0.1",
     "ley": "^0.7.1",
     "next": "11.1.2",
     "next-pwa": "^5.4.0",
@@ -37,6 +34,8 @@
     "@babel/eslint-parser": "^7.15.8",
     "@next/eslint-plugin-next": "^11.1.2",
     "@types/bcrypt": "^5.0.0",
+    "@types/cookie": "^0.4.1",
+    "@types/csrf": "^3.1.0",
     "@types/dotenv-safe": "^8.1.2",
     "@types/googlemaps": "^3.43.3",
     "@types/node": "^16.11.6",

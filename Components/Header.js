@@ -17,15 +17,3 @@ export default function Header() {
     </div>
   );
 }
-
-{
-  // Eventually for later use:
-  /* <Image
-src={Headerlogo}
-alt="Dog Poop Logo"
-width="216px"
-height="43px"
-import Image from 'next/image';
-import Headerlogo from '../public/dogpooplogo.png';
-/> */
-}

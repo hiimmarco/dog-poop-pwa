@@ -1,7 +1,5 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../Components/Header';
-import Layout from '../Components/Layout';
 
 export default function Home() {
   return (

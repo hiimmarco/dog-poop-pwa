@@ -8,8 +8,6 @@ import {
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { useRouter } from 'next/dist/client/router';
-import Head from 'next/head';
-import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
@@ -137,6 +135,7 @@ export default function Addpoop(props) {
     const year = newDate.getFullYear();
     const wholeDate = `${daydate}.${month}.${year}`;
     setCurrentDate(wholeDate);
+    console.log(markers);
   }, []);
 
   async function createPoop(

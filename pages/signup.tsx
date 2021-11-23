@@ -1,7 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
-import { loadDefaultErrorComponents } from 'next/dist/server/load-components';
-import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import Header from '../Components/Header';
