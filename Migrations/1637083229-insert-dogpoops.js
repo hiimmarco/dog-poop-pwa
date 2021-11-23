@@ -1,35 +1,37 @@
 const poops = [
   {
     author_id: 3,
-    title: 'Poops at Bahnhof',
-    description: 'Hey man, this is a big one.',
-    latitude: 48.19694,
-    longitude: 16.33773,
-    date: '23.12.2014',
+    title: 'Poops at Westbahnhof',
+    description: `It's right next to the entrance, be careful.`,
+    latitude: 48.197351,
+    longitude: 16.338273,
+    date: '21.11.2021',
   },
   {
     author_id: 1,
     title: 'Big one',
-    description: 'Hey man, this is a big one.',
+    description:
+      'There must have been a big dog around the Schwedenplatz. Wow!',
     latitude: 48.21174,
     longitude: 16.37706,
-    date: '23.12.2014',
+    date: '23.11.2021',
   },
   {
     author_id: 3,
     title: 'Stay away from here',
-    description: 'Hey man, this is a big one.',
+    description: 'Horrible. Just horrible.',
     latitude: 48.20071,
     longitude: 16.37016,
-    date: '23.12.2014',
+    date: '23.11.2021',
   },
   {
     author_id: 4,
     title: 'Those goddman dogs',
-    description: 'Hey man, this is a big one.',
+    description:
+      'Just ran into one over here at the OBI store. Need to get some new shoes I think.',
     latitude: 48.192528,
     longitude: 16.283246,
-    date: '23.12.2014',
+    date: '29.11.2021',
   },
 ];
 
