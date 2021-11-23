@@ -53,7 +53,6 @@ function connectOneTimeToDatabase() {
 
   return sql;
 }
-
 // Read in the .env environment variables in the file to connect to postgres
 dotenvSafe.config();
 

@@ -18,6 +18,7 @@ export default function Start(props) {
                     title={poop.title}
                     date={poop.date}
                     link={poop.id}
+                    description={poop.description}
                   />
                 </div>
               );

@@ -17,6 +17,11 @@ export default function Poopcard(props) {
             </h2>
           </a>
         </Link>
+        <Link href={`/poops/${props.link}`}>
+          <a>
+            <p className="text-base text-gray-700">{props.description}</p>
+          </a>
+        </Link>
       </div>
     </div>
   );
