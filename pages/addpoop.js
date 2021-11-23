@@ -122,8 +122,8 @@ export default function Addpoop(props) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [markers, setMarkers] = useState({});
-  const [latitude, setLatitude] = useState(48.12345);
-  const [longitude, setLongitude] = useState(16.12345);
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
   const [currentDate, setCurrentDate] = useState('Testdate');
   const router = useRouter();
   const authorId = props.user.id;
@@ -252,8 +252,7 @@ export default function Addpoop(props) {
                 }}
               />
             </GoogleMap>
-            {/* <Link href="/home">
-              <a> */}
+
             <button
               className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
               onClick={() =>
@@ -303,16 +302,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-/* export async function getServerSideProps() {
-  const baseUrl = process.env.BASE_URL;
-  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
-  const poops = await poopsResponse.json();
-
-  return {
-    props: {
-      poops,
-      baseUrl,
-    },
-  };
-} */

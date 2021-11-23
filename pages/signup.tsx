@@ -1,6 +1,8 @@
+import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import { loadDefaultErrorComponents } from 'next/dist/server/load-components';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useState } from 'react';
 import Header from '../Components/Header';
 import { Errors } from '../util/types';
@@ -91,9 +93,58 @@ export default function Signup() {
                 ))}
               </div>
             </form>
+            <p className="mb-8 text-xl font-medium">or</p>
+            <Link href="/signin">
+              <a>
+                <p className="text-xl font-bold text-pink-500">Sign in</p>
+              </a>
+            </Link>
           </div>
         </div>
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { getValidSessionByToken } = await import('../util/database');
+  // const { createToken } = await import('../util/csrf');
+
+  // Redirect from HTTP to HTTPS on Heroku
+  if (
+    context.req.headers.host &&
+    context.req.headers['x-forwarded-proto'] &&
+    context.req.headers['x-forwarded-proto'] !== 'https'
+  ) {
+    return {
+      redirect: {
+        destination: `https://${context.req.headers.host}/signup`,
+        permanent: true,
+      },
+    };
+  }
+
+  const sessionToken = context.req.cookies.sessionToken;
+
+  const session = await getValidSessionByToken(sessionToken);
+
+  console.log(session);
+
+  if (session) {
+    // Redirect the user when they have a session
+    // token by returning an object with the `redirect` prop
+    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      // csrfToken: createToken(),
+    },
+  };
 }

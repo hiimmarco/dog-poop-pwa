@@ -1,5 +1,7 @@
+import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useState } from 'react';
 import Header from '../Components/Header';
 import { Errors } from '../util/types';
@@ -8,7 +10,6 @@ import { LoginResponse } from './api/login';
 export default function Signin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<Errors>([]);
   const roleId = 2;
   const router = useRouter();
@@ -30,7 +31,6 @@ export default function Signin() {
                   },
                   body: JSON.stringify({
                     username: username,
-                    email: email,
                     password: password,
                     roleId: roleId,
                   }),
@@ -80,9 +80,55 @@ export default function Signin() {
                 ))}
               </div>
             </form>
+            <p className="mb-8 text-xl font-medium">or</p>
+            <Link href="/signup">
+              <a>
+                <p className="text-xl font-bold text-pink-500">Sign up</p>
+              </a>
+            </Link>
           </div>
         </div>
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { getValidSessionByToken } = await import('../util/database');
+
+  // Redirect from HTTP to HTTPS on Heroku
+  if (
+    context.req.headers.host &&
+    context.req.headers['x-forwarded-proto'] &&
+    context.req.headers['x-forwarded-proto'] !== 'https'
+  ) {
+    return {
+      redirect: {
+        destination: `https://${context.req.headers.host}/signin`,
+        permanent: true,
+      },
+    };
+  }
+
+  const sessionToken = context.req.cookies.sessionToken;
+
+  const session = await getValidSessionByToken(sessionToken);
+
+  console.log(session);
+
+  if (session) {
+    // Redirect the user when they have a session
+    // token by returning an object with the `redirect` prop
+    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
+    return {
+      redirect: {
+        destination: '/home',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
