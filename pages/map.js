@@ -113,6 +113,7 @@ export default function Maptest(props) {
           />
         ))}
         <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} />
+        {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
         {selectedMarker ? (
           <InfoWindow
             position={{

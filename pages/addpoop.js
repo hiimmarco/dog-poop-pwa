@@ -126,6 +126,7 @@ export default function Addpoop(props) {
   const router = useRouter();
   const authorId = props.user.id;
   console.log(authorId);
+  console.log(markers);
 
   // Function to get the date on which the poop was added
   useEffect(() => {
@@ -135,7 +136,6 @@ export default function Addpoop(props) {
     const year = newDate.getFullYear();
     const wholeDate = `${daydate}.${month}.${year}`;
     setCurrentDate(wholeDate);
-    console.log(markers);
   }, []);
 
   async function createPoop(
@@ -162,6 +162,7 @@ export default function Addpoop(props) {
     });
     const poops = await poopsResponse.json();
     router.push('/home');
+    console.log(poops);
   }
 
   // Load Google Maps Scripts

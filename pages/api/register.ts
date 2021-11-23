@@ -52,6 +52,7 @@ export default async function registerHandler(
     const roleId = req.body.roleId;
     const user = await insertUser({ username, email, passwordHash, roleId });
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!user) {
       res.status(500).send({ errors: [{ message: 'User not create' }] });
       return;

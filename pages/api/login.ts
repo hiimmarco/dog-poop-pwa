@@ -43,6 +43,7 @@ export default async function loginHandler(
     );
 
     // Password doesn't match database
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!isPasswordVerified) {
       res.status(401).send({
         errors: [{ message: 'Username or password not correct.' }],
