@@ -31,7 +31,8 @@ export default function Start(props) {
 }
 
 export async function getServerSideProps(context) {
-  const poopsResponse = await fetch('http://localhost:3000/api/poops');
+  const baseUrl = process.env.BASE_URL;
+  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
   const poops = await poopsResponse.json();
 
   const { getValidSessionByToken } = await import('../util/database');
