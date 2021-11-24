@@ -2,9 +2,3 @@ build
 
 # Next.js build folder
 .next
-public/fallback-development.js
-public/sw.js
-public/workbox-1ffba242.js
-pages/map.js
-pages/api/login.ts
-pages/api/register.ts
