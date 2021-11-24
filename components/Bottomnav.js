@@ -1,27 +1,36 @@
 import Link from 'next/link';
 
 export default function Bottomnav() {
+  const homeColor = 'text-gray-400';
+  const mapColor = 'text-gray-400';
+  const accountColor = 'text-gray-400';
+
   return (
     <div>
-      <nav className="fixed bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
+      <nav className="fixed mx-auto bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
         <ul className="flex flex-row justify-evenly text-xs">
           <Link href="/home">
-            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400">
+            <a
+              className={`w-full block py-2.5 px-3 text-center border-r-2 ${homeColor}`}
+            >
               <svg
-                className="w-6 h-6 mb-1 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
+                className="w-5 h-5 mb-0.5 mx-auto"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
               </svg>
+
               <li>Home</li>
             </a>
           </Link>
           <Link href="/map">
-            <a className="w-full block py-3 px-3 text-center border-r-2 text-gray-400 ">
+            <a
+              className={`w-full block py-2.5 px-3 text-center border-r-2 ${mapColor}`}
+            >
               <svg
-                className="w-6 h-6 mb-1 mx-auto"
+                className="w-5 h-5 mb-0.5 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -36,9 +45,11 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/account">
-            <a className="w-full block py-3 px-3 text-center text-gray-400">
+            <a
+              className={`w-full block py-2.5 px-3 text-center ${accountColor}`}
+            >
               <svg
-                className="w-6 h-6 mb-1 mx-auto"
+                className="w-5 h-5 mb-0.5 mx-auto"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -53,9 +64,9 @@ export default function Bottomnav() {
             </a>
           </Link>
           <Link href="/addpoop">
-            <a className="w-full block  pt-2.5 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
+            <a className="w-full block  pt-2 px-3 text-center bg-gradient-to-r from-pooppink-dark to-pooppink-light">
               <svg
-                className="w-12 h-12 mx-auto text-white place-content-center"
+                className="w-11 h-11 mx-auto text-white place-content-center"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

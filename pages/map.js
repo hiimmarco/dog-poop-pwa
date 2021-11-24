@@ -67,6 +67,8 @@ export default function Maptest(props) {
     libraries,
   });
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const homeColor = 'text-gray-400';
+  const mapColor = 'text-gray-700';
 
   // Create refs to use on map
   const mapRef = useRef();
@@ -80,13 +82,14 @@ export default function Maptest(props) {
     mapRef.current.setZoom(18);
   }, []);
   return isLoaded ? (
-    <div>
+    <div className="fixed">
       <Header />
-      <Locate
+      {/* <Locate
         panTo={panTo}
         setLatitude={setLatitude}
         setLongitude={setLongitude}
-      />
+        className="fixed mx-auto bottom-0 inset-x-0"
+      /> */}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
@@ -94,6 +97,11 @@ export default function Maptest(props) {
         options={options}
         onLoad={onMapLoad}
       >
+        <Locate
+          panTo={panTo}
+          setLatitude={setLatitude}
+          setLongitude={setLongitude}
+        />
         {props.poops.map((poop) => (
           <Marker
             key={`id-list-${poop.id}`}

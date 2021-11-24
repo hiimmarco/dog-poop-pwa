@@ -13,6 +13,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete';
+import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
 
 const mapContainerStyle = {
@@ -125,6 +126,7 @@ export default function Addpoop(props) {
   const [currentDate, setCurrentDate] = useState('Testdate');
   const router = useRouter();
   const authorId = props.user.id;
+
   console.log(authorId);
   console.log(markers);
 
@@ -199,9 +201,9 @@ export default function Addpoop(props) {
     <div>
       <Header />
       <main>
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen max-w-3xl mx-auto mb-12">
           <div className="mt-8 pl-4 pr-4">
-            <p className="mb-8 text-2xl font-medium">Add poop</p>
+            <p className="mb-10 text-2xl font-medium">Add poop</p>
             <label className="block text-base font-semibold mb-2">
               Title:
               <input
@@ -254,7 +256,7 @@ export default function Addpoop(props) {
             </GoogleMap>
 
             <button
-              className="mt-8 mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
+              className="mt-8 mb-24 mx-auto text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
               onClick={() =>
                 createPoop(
                   authorId,
@@ -270,6 +272,7 @@ export default function Addpoop(props) {
             </button>
           </div>
         </div>
+        <Bottomnav />
       </main>
     </div>
   );

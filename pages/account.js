@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import Layout from '../components/Layout';
+import Bottomnav from '../components/Bottomnav';
+import Header from '../components/Headercomp';
 import Poopcard from '../components/Poopcard';
 
 export default function Account(props) {
@@ -21,8 +22,8 @@ export default function Account(props) {
   // Return elements
   return (
     <div>
-      <Layout />
-      <div className="flex flex-col h-screen">
+      <Header />
+      <div className="flex flex-col h-screen max-w-3xl mx-auto">
         <div className="mt-8 pl-4 pr-4">
           <p className="mb-8 text-2xl font-medium">Account</p>
 
@@ -70,6 +71,7 @@ export default function Account(props) {
           </div>
         </div>
       </div>
+      <Bottomnav />
     </div>
   );
 }

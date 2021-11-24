@@ -1,12 +1,13 @@
-import Layout from '../components/Layout';
+import Bottomnav from '../components/Bottomnav';
+import Header from '../components/Headercomp';
 import Poopcard from '../components/Poopcard';
 
 export default function Start(props) {
   return (
     <div>
-      <Layout />
-      <div className="flex flex-col h-screen ">
-        <div className="mt-8 pl-4 pr-4 overflow-y-auto">
+      <Header />
+      <div className="bg-white min-h-screen gap-4 flex flex-wrap justify-center items-center max-w-4xl mx-auto mb-12 ">
+        <div className="mt-8 pl-2 pr-2 overflow-y-auto">
           <p className="mb-8 text-2xl font-semibold text-gray-700">
             Recently added
           </p>
@@ -26,6 +27,7 @@ export default function Start(props) {
           </div>
         </div>
       </div>
+      <Bottomnav />
     </div>
   );
 }
