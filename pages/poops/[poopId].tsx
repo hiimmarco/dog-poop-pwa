@@ -14,20 +14,26 @@ export default function Poopdetail(props: Props) {
       <Layout />
       <div className="flex flex-col h-screen">
         <div className="mt-8 pl-4 pr-4">
-          <p className=" text-xs">{props.poop.date}</p>
-          <h1 className="mb-1 text-2xl font-medium">{props.poop.title}</h1>
+          <p className=" text-md font-semibold text-pink-500">
+            {props.poop.date}
+          </p>
+          <h1 className="mb-1 text-2xl font-bold text-gray-800">
+            {props.poop.title}
+          </h1>
           <p className="font-regular text-sm mb-6">by {props.poop.author_id}</p>
 
           <Image
-            src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=color:pink%7Clabel:G%7C${props.poop.latitude},${props.poop.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
+            src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=anchor:32,10%7Cicon:https://bit.ly/32pSatn%7C${props.poop.latitude},${props.poop.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
             alt="Picture of the author"
-            width={500}
-            height={500}
+            width={600}
+            height={300}
           />
-          <p className="text-base mb-6">{props.poop.description}</p>
+          <p className="text-base mt-6 mb-6 text-gray-800">
+            {props.poop.description}
+          </p>
           <Link href="/home">
             <a>
-              <p className="font-semibold text-pink-700 underline mb-8">
+              <p className="font-semibold text-pink-500 underline mb-8">
                 Back to home
               </p>
             </a>

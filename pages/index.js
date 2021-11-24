@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <main>
-        <div className="flex h-screen">
+      <main className="min-h-full">
+        <div className="flex h-full mt-56">
           <div className="m-auto text-center">
             <Link href="/signup">
               <a>

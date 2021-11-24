@@ -20,7 +20,7 @@ export default function Signup(props: Props) {
     <div>
       <Header />
       <main>
-        <div className="flex flex-col h-screen max-w-3xl mx-auto">
+        <div className="flex flex-col h-screen max-w-md mx-auto">
           <div className="mt-8 pl-4 pr-4">
             <p className="mb-8 text-2xl font-medium">Sign up</p>
             <form
