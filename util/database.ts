@@ -22,6 +22,10 @@ export type User = {
   roleId: number;
 };
 
+export type Username = {
+  userName: string;
+};
+
 export type UserWithPasswordHash = User & {
   passwordHash: string;
 };
@@ -254,6 +258,21 @@ export async function getPoopsByUserId(userId: number) {
     poops.author_id = users.id
   `;
   return poops.map((poop) => camelcaseKeys(poop));
+}
+
+// Query to get the author of a specific poop
+export async function getUserByPoopId(poopId: number) {
+  const users = await sql<User[]>`
+  SELECT
+    users.user_name
+  FROM
+    poops,
+    users
+  WHERE
+    poops.id = ${poopId} AND
+    poops.author_id = users.id
+  `;
+  return camelcaseKeys(users[0]);
 }
 
 export async function createSession(token: string, userId: number) {
