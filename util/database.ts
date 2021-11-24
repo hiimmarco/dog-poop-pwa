@@ -1,7 +1,8 @@
 import camelcaseKeys from 'camelcase-keys';
 import dotenvSafe from 'dotenv-safe';
 import postgres from 'postgres';
-import setPostgresDefaultsOnHeroku from './node-heroku-postgres-env-vars';
+
+const setPostgresDefaultsOnHeroku = require('./node-heroku-postgres-env-vars');
 
 setPostgresDefaultsOnHeroku();
 
