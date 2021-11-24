@@ -5,8 +5,8 @@ import {
   useLoadScript,
 } from '@react-google-maps/api';
 import { useCallback, useRef, useState } from 'react';
-import Bottomnav from '../components1/Bottomnav';
-import Header from '../components1/Header';
+import Bottomnav from '../components/Bottomnav';
+import Header from '../components/Headercomp';
 
 const libraries = ['places'];
 

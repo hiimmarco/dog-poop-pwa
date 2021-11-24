@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import Layout from '../components1/Layout';
-import Poopcard from '../components1/Poopcard';
+import Layout from '../components/Layout';
+import Poopcard from '../components/Poopcard';
 
 export default function Account(props) {
   const [poopList, setPoopList] = useState(props.poops);

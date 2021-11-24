@@ -1,5 +1,5 @@
-import Layout from '../components1/Layout';
-import Poopcard from '../components1/Poopcard';
+import Layout from '../components/Layout';
+import Poopcard from '../components/Poopcard';
 
 export default function Start(props) {
   return (
@@ -31,7 +31,8 @@ export default function Start(props) {
 }
 
 export async function getServerSideProps(context) {
-  const poopsResponse = await fetch('http://localhost:3000/api/poops');
+  const baseUrl = process.env.BASE_URL;
+  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
   const poops = await poopsResponse.json();
 
   const { getValidSessionByToken } = await import('../util/database');

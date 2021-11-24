@@ -13,7 +13,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from 'use-places-autocomplete';
-import Header from '../components1/Header';
+import Header from '../components/Headercomp';
 
 const mapContainerStyle = {
   width: '100%',

@@ -2,7 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useState } from 'react';
-import Header from '../components1/Header';
+import Header from '../components/Headercomp';
 import { Errors } from '../util/types';
 import { RegisterResponse } from './api/register';
 

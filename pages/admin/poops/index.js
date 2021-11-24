@@ -1,5 +1,5 @@
-import Layout from '../../../components1/Layout';
-import Poopcard from '../../../components1/Poopcard';
+import Layout from '../../../components/Layout';
+import Poopcard from '../../../components/Poopcard';
 
 export default function Start(props) {
   return (

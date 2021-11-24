@@ -1,5 +1,5 @@
 import Bottomnav from './Bottomnav';
-import Header from './Header';
+import Header from './Headercomp';
 
 export default function Layout() {
   return (

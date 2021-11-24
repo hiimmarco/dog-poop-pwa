@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import Layout from '../../Components/Layout';
+import Layout from '../../components/Layout';
 import { Poops } from '../../util/database';
 
 type Props = {
