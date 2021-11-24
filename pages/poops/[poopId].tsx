@@ -12,7 +12,7 @@ export default function Poopdetail(props: Props) {
   return (
     <div>
       <Layout />
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen max-w-xl mx-auto">
         <div className="mt-8 pl-4 pr-4">
           <p className=" text-md font-semibold text-pink-500">
             {props.poop.date}
