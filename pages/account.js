@@ -23,11 +23,13 @@ export default function Account(props) {
   return (
     <div>
       <Header />
-      <div className="flex flex-col h-screen max-w-3xl mx-auto">
-        <div className="mt-8 pl-4 pr-4">
-          <p className="mb-8 text-2xl font-medium">Account</p>
+      <div className="flex flex-col h-screen max-w-md mx-auto">
+        <div className="mt-8 pl-2 pr-2">
+          <p className="mb-8 text-2xl font-semibold px-2 text-gray-700">
+            Account
+          </p>
 
-          <p className="mb-2 text-base">
+          <p className="mb-2 px-2 text-base">
             Username:{' '}
             <span className="font-semibold">{props.user.userName}</span>
           </p>
@@ -35,12 +37,12 @@ export default function Account(props) {
           <Link href="/logout">
             <a>
               {' '}
-              <p className="font-semibold text-pink-700 underline mb-8">
+              <p className="font-semibold text-pink-700 underline mb-8 px-2 text-md">
                 Log out
               </p>
             </a>
           </Link>
-          <p className="mb-8 text-xl font-medium">My added poop:</p>
+          <p className="mb-4 text-lg font-semibold px-2">My added poop:</p>
           <div>
             {poopList.map((poop) => {
               return (
@@ -49,22 +51,29 @@ export default function Account(props) {
                     title={poop.title}
                     date={poop.date}
                     link={poop.id}
+                    latitude={poop.latitude}
+                    longitude={poop.longitude}
                   />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                  <button
                     onClick={() => {
                       deletePoop(poop.id);
                     }}
+                    className="bg-red-500 mx-2 mb-12 px-2 py-1 text-xl text-white font-semibold flex flex-row rounded-lg"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    Delete{'    '}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 ml-2 pt-0.5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
                 </div>
               );
             })}
