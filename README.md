@@ -8,7 +8,7 @@ Dog Poop is a mobile first web application that lets you easily report dog poop 
 - PostgreSQL
 - [TailwindCSS](https://tailwindcss.com/)
 - [Progressive Web App](https://web.dev/progressive-web-apps/)
-- [Mapbox](https://docs.mapbox.com/) Geocoding & Static Maps API
+- [Google Maps](https://developers.google.com/maps/documentation/javascript/overview) Dynamic & Static Maps & Places API
 - [Workbox](https://developers.google.com/web/tools/workbox) Library for Service Workers
 
 ## Database Setup
