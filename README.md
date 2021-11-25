@@ -11,6 +11,16 @@ Dog Poop is a mobile first web application that lets you easily report dog poop 
 - [Google Maps](https://developers.google.com/maps/documentation/javascript/overview) Dynamic & Static Maps & Places API
 - [Workbox](https://developers.google.com/web/tools/workbox) Library for Service Workers
 
+## Design
+
+- Clean
+- Friendly
+- Funny
+- Playful
+
+Figma Style Guide: (https://www.figma.com/file/qVtgugn4RDncim0GY7YMer/Dog-Poop-Style-Guide)
+
+
 ## Database Setup
 
 Copy the `.env.example` file to a new file called `.env` (ignored from Git) and fill in the necessary information.
