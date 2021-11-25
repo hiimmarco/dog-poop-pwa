@@ -1,10 +1,15 @@
-# Next.js Example - May 2021
+## What is Dog Poop?
+
+Dog Poop is a mobile first web application that lets you easily report dog poop on sidewalks and provides an overview of all reported dog poop in Vienna.
+
+## Technologies used
 
 - Next.js
-- Postgres.js
-- Jest
-- Cypress.io
-- GitHub Actions
+- PostgreSQL
+- [TailwindCSS](https://tailwindcss.com/)
+- [Progressive Web App](https://web.dev/progressive-web-apps/)
+- [Mapbox](https://docs.mapbox.com/) Geocoding & Static Maps API
+- [Workbox](https://developers.google.com/web/tools/workbox) Library for Service Workers
 
 ## Database Setup
 
