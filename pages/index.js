@@ -1,29 +1,47 @@
-import Link from 'next/link';
+import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
+import Poopcard from '../components/Poopcard';
 
-export default function Home() {
+export default function Start(props) {
   return (
     <div>
       <Header />
-      <main className="min-h-full">
-        <div className="flex h-full mt-56">
-          <div className="m-auto text-center">
-            <Link href="/signup">
-              <a>
-                <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
-                  Sign up
-                </button>
-              </a>
-            </Link>
-            <p className="mb-8 text-xl font-medium">or</p>
-            <Link href="/signin">
-              <a>
-                <p className="text-xl font-bold text-pink-500">Sign in</p>
-              </a>
-            </Link>
+      <div className="bg-white min-h-screen gap-4 flex flex-wrap justify-center items-center max-w-4xl mx-auto mb-12 ">
+        <div className="mt-10 pl-2 pr-2 overflow-y-auto">
+          <p className="mb-8 text-2xl font-semibold pl-2 text-gray-700">
+            Recently added
+          </p>
+          <div>
+            {props.poops.map((poop) => {
+              return (
+                <div key={`id-list-${poop.id}`}>
+                  <Poopcard
+                    title={poop.title}
+                    date={poop.date}
+                    link={poop.id}
+                    description={poop.description}
+                    latitude={poop.latitude}
+                    longitude={poop.longitude}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
-      </main>
+      </div>
+      <Bottomnav />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const baseUrl = process.env.BASE_URL;
+  const poopsResponse = await fetch(`${baseUrl}/api/poops`);
+  const poops = await poopsResponse.json();
+
+  return {
+    props: {
+      poops,
+    },
+  };
 }

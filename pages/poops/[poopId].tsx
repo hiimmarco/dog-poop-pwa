@@ -34,7 +34,7 @@ export default function Poopdetail(props: Props) {
           <p className="text-base mt-6 mb-6 text-gray-800">
             {props.poop.description}
           </p>
-          <Link href="/home">
+          <Link href="/">
             <a>
               <p className="font-semibold text-pink-500 underline mb-8">
                 Back to home
@@ -52,22 +52,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { getUserByPoopId } = await import('../../util/database');
   const poop = await getPoop(Number(context.query.poopId));
   const user = await getUserByPoopId(poop.id);
-  console.log(user);
-
-  const { getValidSessionByToken } = await import('../../util/database');
-  const sessionToken = context.req.cookies.sessionToken;
-  const session = await getValidSessionByToken(sessionToken);
-  if (!session) {
-    // Redirect the user when they have a session
-    // token by returning an object with the `redirect` prop
-    // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
-    return {
-      redirect: {
-        destination: '/signin?returnTo=/map',
-        permanent: false,
-      },
-    };
-  }
 
   return {
     props: {

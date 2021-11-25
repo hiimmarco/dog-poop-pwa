@@ -126,8 +126,6 @@ export default function Addpoop(props) {
   const [currentDate, setCurrentDate] = useState('Testdate');
   const router = useRouter();
   const authorId = props.user.id;
-
-  console.log(authorId);
   console.log(markers);
 
   // Function to get the date on which the poop was added
@@ -163,7 +161,7 @@ export default function Addpoop(props) {
       }),
     });
     const poops = await poopsResponse.json();
-    router.push('/home');
+    router.push('/');
     console.log(poops);
   }
 
@@ -280,11 +278,9 @@ export default function Addpoop(props) {
 
 export async function getServerSideProps(context) {
   const { getValidSessionByToken } = await import('../util/database');
-  const { getUserBySessionToken } = await import('../util/database');
-  const user = await getUserBySessionToken(context.req.cookies.sessionToken);
 
-  const baseUrl = process.env.BASE_URL;
   const sessionToken = context.req.cookies.sessionToken;
+
   const session = await getValidSessionByToken(sessionToken);
 
   if (!session) {
@@ -293,11 +289,16 @@ export async function getServerSideProps(context) {
     // https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
     return {
       redirect: {
-        destination: '/signin?returnTo=/addpoop',
+        destination: '/signup?returnTo=/account',
         permanent: false,
       },
     };
   }
+  const { getUserBySessionToken } = await import('../util/database');
+  const user = await getUserBySessionToken(context.req.cookies.sessionToken);
+
+  const baseUrl = process.env.BASE_URL;
+
   return {
     props: {
       baseUrl,

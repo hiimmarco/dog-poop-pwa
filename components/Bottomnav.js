@@ -9,7 +9,7 @@ export default function Bottomnav() {
     <div>
       <nav className="fixed mx-auto bottom-0 inset-x-0 bg-white border-t-2 border-gray-100">
         <ul className="flex flex-row justify-evenly text-xs">
-          <Link href="/home">
+          <Link href="/">
             <a
               className={`w-full block py-2.5 px-3 text-center border-r-2 ${homeColor}`}
             >
