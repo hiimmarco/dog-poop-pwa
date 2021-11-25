@@ -4,6 +4,7 @@ import {
   Marker,
   useLoadScript,
 } from '@react-google-maps/api';
+import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
 import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
@@ -133,8 +134,13 @@ export default function Maptest(props) {
             }}
           >
             <div>
-              <h2>{selectedMarker.title}</h2>
-              <p>{selectedMarker.author}</p>
+              <Link href={`/poops/${selectedMarker.id}`}>
+                <a>
+                  <h2 className="text-lg font-semibold text-gray-800 p-2">
+                    {selectedMarker.title}
+                  </h2>
+                </a>
+              </Link>
             </div>
           </InfoWindow>
         ) : null}
