@@ -15,6 +15,10 @@ export type Poops = {
   date: string;
 };
 
+export type Baseurl = {
+  baseUrl: string;
+};
+
 export type User = {
   id: number;
   username: string;

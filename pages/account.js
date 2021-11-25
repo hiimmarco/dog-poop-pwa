@@ -25,11 +25,11 @@ export default function Account(props) {
       <Header />
       <div className="flex flex-col h-screen max-w-md mx-auto">
         <div className="mt-8 pl-2 pr-2">
-          <p className="mb-8 text-2xl font-semibold px-2 text-gray-700">
+          <p className="mb-8 text-2xl font-semibold px-2 text-gray-800">
             Account
           </p>
 
-          <p className="mb-2 px-2 text-base">
+          <p className="mb-2 px-2 text-md">
             Username:{' '}
             <span className="font-semibold">{props.user.userName}</span>
           </p>
@@ -37,12 +37,14 @@ export default function Account(props) {
           <Link href="/logout">
             <a>
               {' '}
-              <p className="font-semibold text-pink-700 underline mb-8 px-2 text-md">
+              <p className="font-semibold text-pink-500 underline mb-8 px-2 text-lg">
                 Log out
               </p>
             </a>
           </Link>
-          <p className="mb-4 text-lg font-semibold px-2">My added poop:</p>
+          <p className="mb-4 text-lg font-semibold px-2 text-gray-800">
+            My added poop:
+          </p>
           <div>
             {poopList.map((poop) => {
               return (
@@ -58,7 +60,7 @@ export default function Account(props) {
                     onClick={() => {
                       deletePoop(poop.id);
                     }}
-                    className="bg-red-500 mx-2 mb-12 px-2 py-1 text-xl text-white font-semibold flex flex-row rounded-lg"
+                    className="mx-2 mb-12 px-4 py-2 text-xl  font-semibold flex flex-row rounded-lg border border-red-500 text-red-500"
                   >
                     Delete{'    '}
                     <svg

@@ -2,11 +2,12 @@ import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
-import { Poops, Username } from '../../util/database';
+import { Baseurl, Poops, Username } from '../../util/database';
 
 type Props = {
   poop: Poops;
   user: Username;
+  baseUrl: Baseurl;
 };
 
 export default function Poopdetail(props: Props) {
@@ -26,10 +27,11 @@ export default function Poopdetail(props: Props) {
           </p>
 
           <Image
-            src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=anchor:32,10%7Cicon:https://bit.ly/32pSatn%7C${props.poop.latitude},${props.poop.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
+            src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=600x300&maptype=roadmap&markers=anchor:32,10%7Cicon:https://bit.ly/32pSatn%7C${props.poop.latitude},${props.poop.longitude}&key=${props.baseUrl}`}
             alt="Picture of the author"
             width={600}
             height={300}
+            className="rounded-xl"
           />
           <p className="text-base mt-6 mb-6 text-gray-800">
             {props.poop.description}
@@ -48,6 +50,7 @@ export default function Poopdetail(props: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const baseUrl = process.env.GOOGLE_API;
   const { getPoop } = await import('../../util/database');
   const { getUserByPoopId } = await import('../../util/database');
   const poop = await getPoop(Number(context.query.poopId));
@@ -57,6 +60,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     props: {
       poop,
       user,
+      baseUrl,
     },
   };
 }

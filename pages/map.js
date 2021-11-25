@@ -63,7 +63,7 @@ export default function Maptest(props) {
   const [longitude, setLongitude] = useState('');
   // Load Google Maps Scripts
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
+    googleMapsApiKey: props.mapApiKey,
     libraries,
   });
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -151,6 +151,7 @@ export default function Maptest(props) {
 }
 
 export async function getServerSideProps(context) {
+  const mapApiKey = process.env.GOOGLE_API;
   const { getPoops } = await import('../util/database');
 
   const poops = await getPoops();
@@ -158,6 +159,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       poops,
+      mapApiKey,
     },
   };
 }

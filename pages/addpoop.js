@@ -167,7 +167,7 @@ export default function Addpoop(props) {
 
   // Load Google Maps Scripts
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk',
+    googleMapsApiKey: props.mapApiKey,
     libraries,
   });
 
@@ -199,9 +199,11 @@ export default function Addpoop(props) {
     <div>
       <Header />
       <main>
-        <div className="flex flex-col h-screen max-w-3xl mx-auto mb-12">
+        <div className="flex flex-col h-screen max-w-3xl mx-auto mb-10">
           <div className="mt-8 pl-4 pr-4">
-            <p className="mb-10 text-2xl font-medium">Add poop</p>
+            <p className="mb-10 text-2xl font-semibold text-gray-800">
+              Add poop
+            </p>
             <label className="block text-base font-semibold mb-2">
               Title:
               <input
@@ -277,6 +279,7 @@ export default function Addpoop(props) {
 }
 
 export async function getServerSideProps(context) {
+  const mapApiKey = process.env.GOOGLE_API;
   const { getValidSessionByToken } = await import('../util/database');
 
   const sessionToken = context.req.cookies.sessionToken;
@@ -303,6 +306,7 @@ export async function getServerSideProps(context) {
     props: {
       baseUrl,
       user,
+      mapApiKey,
     },
   };
 }

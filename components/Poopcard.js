@@ -20,7 +20,7 @@ export default function Poopcard(props) {
         {/* Title */}
         <Link href={`/poops/${props.link}`}>
           <a>
-            <h2 className="text-xl pb-1 font-bold text-gray-700">
+            <h2 className="text-xl pb-1 font-bold text-gray-800">
               {props.title}
             </h2>
           </a>

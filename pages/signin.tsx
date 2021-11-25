@@ -115,8 +115,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const session = await getValidSessionByToken(sessionToken);
 
-  console.log(session);
-
   if (session) {
     // Redirect the user when they have a session
     // token by returning an object with the `redirect` prop
