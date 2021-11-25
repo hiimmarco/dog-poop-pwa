@@ -26,7 +26,7 @@ export default function Poopcard(props) {
           </a>
         </Link>
         {/* Description */}
-        <Link href={`/poops/${props.link}`}>
+        <Link rel="preconnect" href={`/poops/${props.link}`}>
           <a>
             <p className="text-md text-gray-800">{props.description}</p>
           </a>
