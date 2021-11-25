@@ -199,7 +199,7 @@ export default function Addpoop(props) {
     <div>
       <Header />
       <main>
-        <div className="flex flex-col h-screen max-w-3xl mx-auto mb-10">
+        <div className="flex flex-col h-screen max-w-xl mx-auto mb-10">
           <div className="mt-8 pl-4 pr-4">
             <p className="mb-10 text-2xl font-semibold text-gray-800">
               Add poop
@@ -254,22 +254,23 @@ export default function Addpoop(props) {
                 }}
               />
             </GoogleMap>
-
-            <button
-              className="mt-8 mb-24 mx-auto text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
-              onClick={() =>
-                createPoop(
-                  authorId,
-                  title,
-                  description,
-                  latitude,
-                  longitude,
-                  currentDate,
-                )
-              }
-            >
-              Add poop
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="w-full max-w-xl mt-8 mb-24 mx-auto text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-28"
+                onClick={() =>
+                  createPoop(
+                    authorId,
+                    title,
+                    description,
+                    latitude,
+                    longitude,
+                    currentDate,
+                  )
+                }
+              >
+                Add poop
+              </button>
+            </div>
           </div>
         </div>
         <Bottomnav />

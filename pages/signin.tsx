@@ -20,7 +20,7 @@ export default function Signin() {
       <main>
         <div className="flex flex-col h-screen max-w-md mx-auto">
           <div className="mt-8 pl-4 pr-4">
-            <p className="mb-8 text-2xl font-medium">Sign in</p>
+            <p className="mb-8 text-2xl font-semibold text-gray-800">Sign in</p>
             <form
               onSubmit={async (event) => {
                 event.preventDefault();
@@ -48,7 +48,7 @@ export default function Signin() {
                 router.push(destination);
               }}
             >
-              <label className="block text-base font-semibold mb-4">
+              <label className="block text-lg font-medium text-gray-800 mb-4">
                 Username:
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -59,7 +59,7 @@ export default function Signin() {
                 />
               </label>
 
-              <label className="block text-base font-semibold mb-2">
+              <label className="block text-lg font-medium text-gray-800 mb-4">
                 Password:
                 <input
                   type="password"
@@ -70,22 +70,25 @@ export default function Signin() {
                   }}
                 />
               </label>
-
-              <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
-                Sign in
-              </button>
-              <div className="text-base  text-red-600">
+              <div className="flex justify-center">
+                <button className="mb-8 text-xl bg-gradient-to-r from-pooppink-dark to-pooppink-light rounded text-white font-bold py-3 px-24">
+                  Sign in
+                </button>
+              </div>
+              <div className="text-base  text-red-500 mb-2">
                 {errors.map((error) => (
                   <div key={`error-${error.message}`}>{error.message}</div>
                 ))}
               </div>
             </form>
-            <p className="mb-8 text-xl font-medium">or</p>
-            <Link href="/signup">
-              <a>
-                <p className="text-xl font-bold text-pink-500">Sign up</p>
-              </a>
-            </Link>
+            <div className="block text-center">
+              <p className="mb-8 text-xl font-medium">or</p>
+              <Link href="/signup">
+                <a>
+                  <p className="text-xl font-bold text-pink-500">Sign up</p>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
         <Bottomnav />
