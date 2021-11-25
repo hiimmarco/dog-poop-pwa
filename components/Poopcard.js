@@ -9,6 +9,7 @@ export default function Poopcard(props) {
         <a>
           <img
             src={`https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=362x192&maptype=roadmap&markers=anchor:32,10%7Cicon:https://bit.ly/32pSatn%7C${props.latitude},${props.longitude}&key=AIzaSyAgZpzR1cuZ1Pe77I8gsJJvKKboJsx_KYk`}
+            rel="preconnect"
             alt="Map"
             className="h-48 w-full pl-1 object-cover rounded-xl"
           />
@@ -26,7 +27,7 @@ export default function Poopcard(props) {
           </a>
         </Link>
         {/* Description */}
-        <Link rel="preconnect" href={`/poops/${props.link}`}>
+        <Link href={`/poops/${props.link}`}>
           <a>
             <p className="text-md text-gray-800">{props.description}</p>
           </a>
