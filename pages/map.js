@@ -92,7 +92,7 @@ export default function Maptest(props) {
       /> */}
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={10}
+        zoom={12}
         center={center}
         options={options}
         onLoad={onMapLoad}
