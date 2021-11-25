@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
 import { Errors } from '../util/types';
 import { LoginResponse } from './api/login';
@@ -43,7 +44,7 @@ export default function Signin() {
                   typeof router.query.returnTo === 'string' &&
                   router.query.returnTo
                     ? router.query.returnTo
-                    : '/home';
+                    : '/';
                 router.push(destination);
               }}
             >
@@ -87,6 +88,7 @@ export default function Signin() {
             </Link>
           </div>
         </div>
+        <Bottomnav />
       </main>
     </div>
   );

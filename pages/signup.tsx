@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useState } from 'react';
+import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
 import { Errors } from '../util/types';
 import { RegisterResponse } from './api/register';
@@ -49,7 +50,7 @@ export default function Signup(props: Props) {
                   typeof router.query.returnTo === 'string' &&
                   router.query.returnTo
                     ? router.query.returnTo
-                    : '/home';
+                    : '/';
                 router.push(destination);
               }}
             >
@@ -102,6 +103,7 @@ export default function Signup(props: Props) {
             </Link>
           </div>
         </div>
+        <Bottomnav />
       </main>
     </div>
   );
@@ -128,8 +130,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const sessionToken = context.req.cookies.sessionToken;
 
   const session = await getValidSessionByToken(sessionToken);
-
-  console.log(session);
 
   if (session) {
     // Redirect the user when they have a session
