@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import Bottomnav from '../components/Bottomnav';
@@ -16,6 +17,13 @@ export default function Signin() {
 
   return (
     <div>
+      <Head>
+        <title>Sign in - Dog Poop</title>
+        <meta
+          name="description"
+          content="Pop Doog is the #1 dog poop reporter in the world."
+        />
+      </Head>
       <Header />
       <main>
         <div className="flex flex-col h-screen max-w-md mx-auto">

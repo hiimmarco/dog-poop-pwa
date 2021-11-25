@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
@@ -13,6 +14,10 @@ type Props = {
 export default function Poopdetail(props: Props) {
   return (
     <div>
+      <Head>
+        <title>{props.poop.title} - Dog Poop</title>
+        <meta name="description" content={props.poop.description} />
+      </Head>
       <Layout />
       <div className="flex flex-col h-screen max-w-xl mx-auto">
         <div className="mt-8 pl-4 pr-4">

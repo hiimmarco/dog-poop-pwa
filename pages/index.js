@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Bottomnav from '../components/Bottomnav';
 import Header from '../components/Headercomp';
 import Poopcard from '../components/Poopcard';
@@ -5,6 +6,13 @@ import Poopcard from '../components/Poopcard';
 export default function Start(props) {
   return (
     <div>
+      <Head>
+        <title>Dog Poop</title>
+        <meta
+          name="description"
+          content="Pop Doog is the #1 dog poop reporter in the world."
+        />
+      </Head>
       <Header />
       <div className="bg-white min-h-screen gap-4 flex flex-wrap justify-center items-center max-w-4xl mx-auto mb-12 ">
         <div className="mt-10 pl-2 pr-2 overflow-y-auto">

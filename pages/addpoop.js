@@ -8,6 +8,7 @@ import {
 } from '@reach/combobox';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
@@ -81,6 +82,13 @@ function Search({ setLatitude, setLongitude, panTo }) {
   });
   return (
     <div>
+      <Head>
+        <title>Add poop - Dog Poop</title>
+        <meta
+          name="description"
+          content="Pop Doog is the #1 dog poop reporter in the world."
+        />
+      </Head>
       <Combobox
         onSelect={async (address) => {
           setValue(address, false);

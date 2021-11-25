@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import Bottomnav from '../components/Bottomnav';
@@ -19,6 +20,13 @@ export default function Signup(props: Props) {
 
   return (
     <div>
+      <Head>
+        <title>Sign up - Dog Poop</title>
+        <meta
+          name="description"
+          content="Pop Doog is the #1 dog poop reporter in the world."
+        />
+      </Head>
       <Header />
       <main>
         <div className="flex flex-col h-screen max-w-md mx-auto">
@@ -90,7 +98,7 @@ export default function Signup(props: Props) {
                   Sign up
                 </button>
               </div>
-              <div className="text-base  text-red-500 mb-8">
+              <div className="text-base  text-red-500 mb-2">
                 {errors.map((error) => (
                   <div key={`error-${error.message}`}>{error.message}</div>
                 ))}

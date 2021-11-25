@@ -4,6 +4,7 @@ import {
   Marker,
   useLoadScript,
 } from '@react-google-maps/api';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
 import Bottomnav from '../components/Bottomnav';
@@ -84,6 +85,13 @@ export default function Maptest(props) {
   }, []);
   return isLoaded ? (
     <div className="fixed">
+      <Head>
+        <title>Map - Dog Poop</title>
+        <meta
+          name="description"
+          content="Pop Doog is the #1 dog poop reporter in the world."
+        />
+      </Head>
       <Header />
       {/* <Locate
         panTo={panTo}
@@ -136,7 +144,7 @@ export default function Maptest(props) {
             <div>
               <Link href={`/poops/${selectedMarker.id}`}>
                 <a>
-                  <h2 className="text-lg font-semibold text-gray-800 p-2">
+                  <h2 className="text-lg font-semibold text-gray-700 p-2">
                     {selectedMarker.title}
                   </h2>
                 </a>
