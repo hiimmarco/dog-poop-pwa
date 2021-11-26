@@ -18,7 +18,7 @@ Dog Poop is a mobile first web application that lets you easily report dog poop 
 - Funny
 - Playful
 
-Figma Style Guide: (https://www.figma.com/file/qVtgugn4RDncim0GY7YMer/Dog-Poop-Style-Guide)
+Figma Style Guide: https://www.figma.com/file/qVtgugn4RDncim0GY7YMer/Dog-Poop-Style-Guide
 
 
 ## Database Setup
