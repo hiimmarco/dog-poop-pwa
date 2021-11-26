@@ -14,14 +14,17 @@ class MyDocument extends Document {
           />
 
           <meta name="theme-color" content="#fff" />
-          <meta name="application-name" content="PWA App" />
+          <meta name="application-name" content="Dog Poop" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
             content="default"
           />
-          <meta name="apple-mobile-web-app-title" content="PWA App" />
-          <meta name="description" content="Best PWA App in the world" />
+          <meta name="apple-mobile-web-app-title" content="Dog Poop" />
+          <meta
+            name="description"
+            content="Best dog poop reporter for Vienna."
+          />
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta
@@ -68,17 +71,13 @@ class MyDocument extends Document {
             color="#5bbad5"
           />
           <link rel="shortcut icon" href="/favicon.ico" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
 
           <meta name="twitter:card" content="summary" />
           <meta name="twitter:url" content="https://yourdomain.com" />
-          <meta name="twitter:title" content="PWA App" />
+          <meta name="twitter:title" content="Dog Poop" />
           <meta
             name="twitter:description"
-            content="Best PWA App in the world"
+            content="Best dog poop reporter in Vienna."
           />
           <meta
             name="twitter:image"
