@@ -62,7 +62,7 @@ export default function Signup(props: Props) {
                 router.push(destination);
               }}
             >
-              <label className="block text-lg font-medium text-gray-800 mb-4">
+              <label className="block text-base font-semibold text-gray-800 mb-4">
                 Username:
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -74,7 +74,7 @@ export default function Signup(props: Props) {
                   }}
                 />
               </label>
-              <label className="block text-lg font-medium text-gray-800 mb-4">
+              <label className="block text-base font-semibold text-gray-800 mb-4">
                 Email:
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -87,7 +87,7 @@ export default function Signup(props: Props) {
                   }}
                 />
               </label>
-              <label className="block text-lg font-medium text-gray-800 mb-4">
+              <label className="block text-base font-semibold text-gray-800 mb-4">
                 Password:
                 <input
                   type="password"
