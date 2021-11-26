@@ -216,6 +216,7 @@ export default function Addpoop(props) {
               Title:
               <input
                 className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                required
                 value={title}
                 onChange={(event) => {
                   setTitle(event.currentTarget.value);
@@ -225,6 +226,7 @@ export default function Addpoop(props) {
             <label className="block text-base font-semibold mb-2">
               Description:
               <input
+                required
                 className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 value={description}
                 onChange={(event) => {

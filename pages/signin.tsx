@@ -61,6 +61,7 @@ export default function Signin() {
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={username}
+                  required
                   onChange={(event) => {
                     setUsername(event.currentTarget.value);
                   }}
@@ -71,6 +72,7 @@ export default function Signin() {
                 Password:
                 <input
                   type="password"
+                  required
                   className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={password}
                   onChange={(event) => {
