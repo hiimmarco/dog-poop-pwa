@@ -212,7 +212,7 @@ export default function Addpoop(props) {
             <p className="mb-10 text-2xl font-semibold text-gray-800">
               Add poop
             </p>
-            <label className="block text-base font-semibold mb-2">
+            <label className="block text-base font-semibold text-gray-800 mb-2">
               Title:
               <input
                 className="mb-6 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -223,7 +223,7 @@ export default function Addpoop(props) {
                 }}
               />
             </label>
-            <label className="block text-base font-semibold mb-2">
+            <label className="block text-base font-semibold text-gray-800 mb-2">
               Description:
               <input
                 required
@@ -235,7 +235,7 @@ export default function Addpoop(props) {
               />
             </label>
 
-            <p className="font-semibold">Address:</p>
+            <p className="text-base font-semibold text-gray-800">Address:</p>
             <Search
               setLatitude={setLatitude}
               setLongitude={setLongitude}
