@@ -66,6 +66,7 @@ export default function Signup(props: Props) {
                 Username:
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  name="username"
                   value={username}
                   onChange={(event) => {
                     setUsername(event.currentTarget.value);
@@ -76,6 +77,7 @@ export default function Signup(props: Props) {
                 Email:
                 <input
                   className="mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  name="email"
                   value={email}
                   onChange={(event) => {
                     setEmail(event.currentTarget.value);
@@ -86,6 +88,7 @@ export default function Signup(props: Props) {
                 Password:
                 <input
                   type="password"
+                  name="password "
                   className="mb-8 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   value={password}
                   onChange={(event) => {
