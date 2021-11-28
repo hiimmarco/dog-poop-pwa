@@ -18,10 +18,14 @@ Dog Poop is a mobile first web application that lets you easily report dog poop 
 - Funny
 - Playful
 
-Figma Style Guide: (https://www.figma.com/file/qVtgugn4RDncim0GY7YMer/Dog-Poop-Style-Guide)
+Figma Style Guide: https://www.figma.com/file/qVtgugn4RDncim0GY7YMer/Dog-Poop-Style-Guide
 
 
 ## Database Setup
+
+Database diagram: https://drawsql.app/me-134/diagrams/dog-poop
+
+<img width="764" alt="database-diagram" src="https://user-images.githubusercontent.com/25134498/143601905-ebc70755-bd09-497b-b372-0995d4cf2c47.png">
 
 Copy the `.env.example` file to a new file called `.env` (ignored from Git) and fill in the necessary information.
 
